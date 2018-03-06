@@ -1,5 +1,11 @@
 package ua.victoria.app.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +16,12 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import ua.victoria.app.editor.UserEditor;
 import ua.victoria.app.entity.User;
@@ -53,7 +62,69 @@ public class UserController {
 			return "user/add";
 		}
 		userService.saveUser(user);
-		return "redirect:/user/list";
+		return "redirect:/";
+	}
+	
+	/*@GetMapping("/user/9/detail")
+	public String showUser(
+			Model model,
+			@PathVariable("userId") int userId
+			) {
+		User user = userService.findUserById(userId);
+		model.addAttribute("userMod",user);
+		return "user/detail";
+	}*/
+	
+	@GetMapping("/{userId}/edit")
+	public String editUser(@PathVariable("userId") int userId, Model model ) {
+		
+		User user =userService.findUserById(userId);
+		model.addAttribute("userEdit",user);
+		
+		return "user/edit";
+	}
+	
+	@PostMapping("/{userId}/edit")
+	public String saveEditUser(
+			@PathVariable("userId") int userId,
+			@RequestParam("firstName") String firstName,
+			@RequestParam("lastName") String lastName,
+			@RequestParam("phone") String phone) {
+		/*System.out.println(user);
+		System.out.println(result);*/
+		User user =userService.findUserById(userId);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setPhone(phone);
+		
+		userService.saveUser(user);
+		
+		return "redirect:/user/"+user.getId()+"/detail";
+	}
+	
+	@PostMapping("/{userId}/edit/img")
+	public String saveFileToDisk(@PathVariable("userId") int userId,@RequestParam("fileUpload") MultipartFile file) throws IOException {
+		
+		if (!file.isEmpty() && file!=null) {
+			BufferedImage image = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+			File dest = new File("D:/tmp/" +userId+"/logo.png");
+			ImageIO.write(image, "png", dest);
+		}
+		
+		return "redirect:/user/"+userId+"/detail";
+	}
+	@PostMapping("/login")
+	public String loginInSystem(
+			@RequestParam("login") String login,
+			@RequestParam("password") String password) {
+		System.out.println(login);
+		System.out.println(password);
+		User user = userService.findUserByLogin(login);
+		if (user.getPassword().equals(password)) {
+			return "redirect:/user/"+user.getId()+"/detail";
+		}
+		else return "redirect:/";
+		
 	}
 
 }

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan
 public class MvcConfig extends WebMvcConfigurerAdapter{
 
-/*	@Override
+	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		//вказуємо де шукати jsp
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -24,7 +24,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 		resolver.setViewClass(JstlView.class);
 		//передаємо в registry
 		registry.viewResolver(resolver);
-	}*/
+	}
 	
 	
 

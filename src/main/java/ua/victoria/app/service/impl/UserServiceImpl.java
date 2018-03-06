@@ -1,5 +1,6 @@
 package ua.victoria.app.service.impl;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,20 @@ public class UserServiceImpl implements UserService{
 	public User findUserByLogin(String login) {
 		
 		return userRepository.findUserByLogin(login);
+	}
+
+	@Override
+	public void createFolder(User user) {
+		String id = user.getId().toString();
+		  File file = new File("D:\\tmp\\"+id);
+	        if (!file.exists()) {
+	            if (file.mkdir()) {
+	                System.out.println("Directory is created!");
+	            } else {
+	                System.out.println("Failed to create directory!");
+	            }
+	        }
+		
 	}
 
 	

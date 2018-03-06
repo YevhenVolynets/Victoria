@@ -14,6 +14,8 @@ void saveUser(User user);
 	User findUserById(int id);
 
 	User findUserByLogin(String login);
+	
+	void createFolder(User user);
 
 
 }
