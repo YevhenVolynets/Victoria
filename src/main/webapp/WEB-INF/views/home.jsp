@@ -117,6 +117,7 @@
 					<li><a href="${pageContext.request.contextPath}/social">Соціальні мережі</a></li>
 				</ul>
 			</li>
+			
 			<li class="dropdown headerText">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">КОМАНДИ <b class="caret"></b></a>
 				<ul class="dropdown-menu">

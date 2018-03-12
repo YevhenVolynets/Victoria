@@ -8,6 +8,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +56,29 @@ public class UserController {
 		model.addAttribute("usersList", userService.findAllUsers());
 		
 		return "user/list";
+	}
+	
+	@GetMapping("/{userId}/detail")
+	public String showUser(@PathVariable("userId") int userId, Model model) throws IOException {
+		
+		String fileName = "D:/tmp/"+userId+"/logo.png";
+		if ((new File(fileName)).exists()) {
+			File file = new File("D:/tmp/"+userId+"/logo.png");
+			
+			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
+			String encodeFileBase64 = new String(encodeFileToByte);
+			model.addAttribute("imageFromDisk",encodeFileBase64);
+		} else {
+			File file = new File("D:/tmp/default.png");
+			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
+			String encodeFileBase64 = new String(encodeFileToByte);
+			model.addAttribute("imageFromDisk",encodeFileBase64);
+		} 
+
+		User user1 = userService.findUserById(userId);
+		model.addAttribute("userOne",user1);
+		System.out.println(user1);
+		return "user/detail";
 	}
 	
 	@PostMapping("/add")

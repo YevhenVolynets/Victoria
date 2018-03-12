@@ -55,28 +55,7 @@ public class BaseController {
 		userService.createFolder(user);}
 		return "redirect:/user/"+user.getId()+"/detail"; 
 	}
-	@GetMapping("/user/{userId}/detail")
-	public String showUser(@PathVariable("userId") int userId, Model model) throws IOException {
-		
-		String fileName = "D:/tmp/"+userId+"/logo.png";
-		if ((new File(fileName)).exists()) {
-			File file = new File("D:/tmp/"+userId+"/logo.png");
-			
-			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
-			String encodeFileBase64 = new String(encodeFileToByte);
-			model.addAttribute("imageFromDisk",encodeFileBase64);
-		} else {
-			File file = new File("D:/tmp/default.png");
-			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
-			String encodeFileBase64 = new String(encodeFileToByte);
-			model.addAttribute("imageFromDisk",encodeFileBase64);
-		} 
-
-		User user1 = userService.findUserById(userId);
-		model.addAttribute("userOne",user1);
-		System.out.println(user1);
-		return "user/detail";
-	}
+	
 	
 	@GetMapping("/social")
 	public String showSocial() {

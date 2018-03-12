@@ -1,4 +1,4 @@
-package ua.victoria.app.service.impl;
+ package ua.victoria.app.service.impl;
 
 import java.io.File;
 import java.util.List;
@@ -14,6 +14,7 @@ import ua.victoria.app.service.UserService;
 @Service
 public class UserServiceImpl implements UserService{
 
+	
 	private UserRepository userRepository;
 	
 	@Autowired
