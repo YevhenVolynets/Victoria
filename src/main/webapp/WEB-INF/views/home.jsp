@@ -111,7 +111,7 @@
 			<li class="dropdown  headerText">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">ГОЛОВНА <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="${pageContext.request.contextPath}/news">Новини</a></li>
+					<li><a href="${pageContext.request.contextPath}/news/">Новини</a></li>
 					<li><a href="${pageContext.request.contextPath}/photos">Фото</a></li>
 					<li><a href="${pageContext.request.contextPath}/video">Відео</a></li>
 					<li><a href="${pageContext.request.contextPath}/social">Соціальні мережі</a></li>

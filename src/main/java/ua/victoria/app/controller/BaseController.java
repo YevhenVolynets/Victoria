@@ -63,4 +63,25 @@ public class BaseController {
 		
 		return "/social";
 	}
+	
+	@GetMapping("/photos")
+	public String showPhoto() {
+		
+		
+		return "/photo";
+	}
+	
+	@GetMapping("/video")
+	public String showVideo() {
+		
+		
+		return "/video";
+	}
+	
+	@GetMapping("/contacts")
+	public String showContact() {
+		
+		
+		return "/club/contacts";
+	}
 }
