@@ -13,5 +13,7 @@ public interface TeamService {
 	Team findTeamById(int id);
 	
 	Team findTeamByNameTeam(String nameTeam);
+	
+	void saveTeamWithTable();
 
 }

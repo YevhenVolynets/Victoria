@@ -37,7 +37,7 @@ public class ParserTableResultServiceImpl implements ParserTableResultService {
 		
 		Document doc = Jsoup.connect("http://www.dufll.org.ua/tables/2017/dufll/2004/").get();
 
-		Element tableScoreOne = doc.getElementById("lt_27");
+		Element tableScoreOne = doc.getElementById("lt_28");
 		
 		Object aqq;
 		int numNodes = 0;

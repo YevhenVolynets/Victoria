@@ -2,6 +2,8 @@ package ua.victoria.app.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
@@ -34,6 +36,10 @@ public class ParserTableResult extends BaseEntity{
 	
 	@Column(name = "point")
 	private String point;
+	
+	@Column(name = "ligue")
+	@Enumerated(EnumType.ORDINAL)
+	private Ligue ligue;
 
 	public ParserTableResult() {
 		
@@ -122,6 +128,16 @@ public class ParserTableResult extends BaseEntity{
 
 	public void setPoint(String point) {
 		this.point = point;
+	}
+	
+	
+
+	public Ligue getLigue() {
+		return ligue;
+	}
+
+	public void setLigue(Ligue ligue) {
+		this.ligue = ligue;
 	}
 
 	@Override

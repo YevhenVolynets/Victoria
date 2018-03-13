@@ -43,7 +43,11 @@ public class TeamController {
 		teamService.saveTeam(team);
 		return "redirect:/team/list";
 	}
-	
+	@GetMapping("/addpars")
+	public String writeTeam() {
+		teamService.saveTeamWithTable();
+		return "redirect:/";
+	}
 	
 
 }

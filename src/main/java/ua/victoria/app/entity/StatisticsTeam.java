@@ -33,6 +33,11 @@ public class StatisticsTeam extends BaseEntity{
 	
 	@Column(name = "rating_position")
 	private int ratingPosition;
+	
+	@Column(name = "ligue")
+	@Enumerated(EnumType.ORDINAL)
+	private Ligue ligue;
+
 
 	public StatisticsTeam() {
 
@@ -119,6 +124,22 @@ public class StatisticsTeam extends BaseEntity{
 
 	public void setTeam(Team team) {
 		this.team = team;
+	}
+
+	  
+	public Ligue getLigue() {
+		return ligue;
+	}
+
+	public void setLigue(Ligue ligue) {
+		this.ligue = ligue;
+	}
+
+	@Override
+	public String toString() {
+		return "StatisticsTeam [team=" + team + ", countMatch=" + countMatch + ", winMatch=" + winMatch + ", loseMatch="
+				+ loseMatch + ", drawMatch=" + drawMatch + ", scoredGoal=" + scoredGoal + ", missedGoal=" + missedGoal
+				+ ", point=" + point + ", ratingPosition=" + ratingPosition + ", getId()=" + getId() + "]";
 	}
 	
 	
