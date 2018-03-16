@@ -43,6 +43,7 @@ public class BaseController {
 	
 	@PostMapping("/")
 	public String saveUser(@ModelAttribute("userModelka") @Valid User user,@RequestParam("password2") String pass, BindingResult result ) {
+		
 		if(result.hasErrors()) {
 			return "home";
 		}
@@ -61,28 +62,28 @@ public class BaseController {
 	public String showSocial() {
 		
 		
-		return "/social";
+		return "social";
 	}
 	
 	@GetMapping("/photos")
 	public String showPhoto() {
 		
 		
-		return "/photo";
+		return "photo";
 	}
 	
 	@GetMapping("/video")
 	public String showVideo() {
 		
 		
-		return "/video";
+		return "video";
 	}
 	
 	@GetMapping("/contacts")
 	public String showContact() {
 		
 		
-		return "/club/contacts";
+		return "club/contacts";
 	}
 	
 	

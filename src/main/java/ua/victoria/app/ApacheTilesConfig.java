@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @Component
 public class ApacheTilesConfig {
 	
-	/*@Bean
+	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		final TilesConfigurer configurer = new TilesConfigurer();
 		configurer.setDefinitions(new String[] { "WEB-INF/tiles/tiles.xml" });
@@ -22,6 +22,6 @@ public class ApacheTilesConfig {
 		final TilesViewResolver resolver = new TilesViewResolver();
 		resolver.setViewClass(TilesView.class);
 		return resolver;
-	}*/
+	}
 
 }

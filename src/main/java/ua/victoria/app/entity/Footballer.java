@@ -85,6 +85,12 @@ public class Footballer extends BaseEntity{
 	public void setStatistics(StatisticsFootballer statistics) {
 		this.statistics = statistics;
 	}
+
+	@Override
+	public String toString() {
+		return "Footballer [firstName=" + firstName + ", lastName=" + lastName + ", numberShirt=" + numberShirt
+				+ ", amplua=" + amplua + ", team=" + team + ", statistics=" + statistics + ", getId()=" + getId() + "]";
+	}
 	
 	
 }

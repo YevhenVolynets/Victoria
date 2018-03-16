@@ -7,22 +7,28 @@ import javax.persistence.*;
 public class Amplua extends BaseEntity{
 
 	@Column(name = "amplua")
-	private String amplua;
+	@Enumerated(EnumType.STRING)
+	private Position amplua;
 
 	public Amplua() {
 		
 	}
 
-	public Amplua(String amplua) {
+	public Amplua(Position amplua) {
 		this.amplua = amplua;
 	}
 
-	public String getAmplua() {
+	public Position getAmplua() {
 		return amplua;
 	}
 
-	public void setAmplua(String amplua) {
+	public void setAmplua(Position amplua) {
 		this.amplua = amplua;
+	}
+
+	@Override
+	public String toString() {
+		return "Amplua [amplua=" + amplua + "]";
 	}
 	
 	
