@@ -3,19 +3,21 @@ package ua.victoria.app.service;
 import java.util.List;
 
 
-import ua.victoria.app.entity.User;
+import ua.victoria.app.entity.UserEntity;
 
 public interface UserService {
 	
-void saveUser(User user);
+void saveUser(UserEntity user);
 	
-	List<User> findAllUsers();
+	List<UserEntity> findAllUsers();
 	
-	User findUserById(int id);
+	UserEntity findUserById(int id);
 
-	User findUserByLogin(String login);
+	UserEntity findUserByLogin(String login);
 	
-	void createFolder(User user);
+	UserEntity findUserByEmail(String email);
+	
+	void createFolder(UserEntity user);
 
 
 }

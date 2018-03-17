@@ -29,6 +29,11 @@ public class AdminController {
 	@Autowired
 	private AmpluaService ampluaService;
 	
+	@GetMapping
+	public String getMenu() {
+		System.out.println(123);
+		return "admin/main";
+	}
 	
 	@GetMapping("/addNews")
 	public String addNews(Model model) {

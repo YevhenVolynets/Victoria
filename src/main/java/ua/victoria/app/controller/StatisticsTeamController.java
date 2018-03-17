@@ -26,18 +26,7 @@ public class StatisticsTeamController {
 		
 		model.addAttribute("listStat1",statisticsTeamService.findPremierLigue());
 		model.addAttribute("listStat2", statisticsTeamService.findSecondLigue());
-		/*System.out.println(statisticsTeamService.findPremierLigue());*/
 		
-		/*StatisticsTeam st = new StatisticsTeam();
-		st.setCountMatch(1);
-		st.setDrawMatch(1);
-		st.setLoseMatch(1);
-		st.setMissedGoal(1);
-		st.setPoint(1);
-		st.setScoredGoal(1);
-		st.setLigue(Ligue.Second);
-		
-		statisticsTeamRepository.save(st);*/
 		
 		
 		return "statistics/team/statisticsTable";

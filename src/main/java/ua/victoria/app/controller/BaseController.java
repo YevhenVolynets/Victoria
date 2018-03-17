@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ua.victoria.app.entity.User;
+import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.entity.UserRole;
 import ua.victoria.app.service.UserService;
 
@@ -35,14 +35,14 @@ public class BaseController {
 	
 	@GetMapping("/")
 	public String showUserAddPAge(Model model) {
-		model.addAttribute("userModelka", new User());
+		model.addAttribute("userModelka", new UserEntity());
 		model.addAttribute("userRoless",UserRole.values());
 		
 		return "home";
 	}
 	
-	@PostMapping("/")
-	public String saveUser(@ModelAttribute("userModelka") @Valid User user,@RequestParam("password2") String pass, BindingResult result ) {
+	/*@PostMapping("/")
+	public String saveUser(@ModelAttribute("userModelka") @Valid UserEntity user,@RequestParam("password2") String pass, BindingResult result ) {
 		
 		if(result.hasErrors()) {
 			return "home";
@@ -55,7 +55,7 @@ public class BaseController {
 		userService.saveUser(user);
 		userService.createFolder(user);}
 		return "redirect:/user/"+user.getId()+"/detail"; 
-	}
+	}*/
 	
 	
 	@GetMapping("/social")

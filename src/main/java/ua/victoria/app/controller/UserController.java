@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.imageio.ImageIO;
 import javax.validation.Valid;
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import ua.victoria.app.editor.UserEditor;
-import ua.victoria.app.entity.User;
+import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.entity.UserRole;
 import ua.victoria.app.service.UserService;
 
@@ -40,22 +41,14 @@ public class UserController {
 	
 	@InitBinder("user") //вказується назва сессії
 	protected void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(User.class, new UserEditor(userService));
+		binder.registerCustomEditor(UserEntity.class, new UserEditor(userService));
 	}
 	
-	@GetMapping("/add")
-	public String showUserAddPAge(Model model) {
-		model.addAttribute("userModel", new User());
-		model.addAttribute("userRoles",UserRole.values());
-		
-		return "user/add";
-	}
-	
-	@GetMapping("/list")
-	public String showAllUsers(Model model) {
-		model.addAttribute("usersList", userService.findAllUsers());
-		
-		return "user/list";
+	@GetMapping("/profile")
+	public String showProfile(Model model,Principal principal) { 
+		UserEntity entity = userService.findUserByEmail(principal.getName());
+		model.addAttribute("user", entity);
+		return "user/profile";
 	}
 	
 	@GetMapping("/{userId}/detail")
@@ -75,14 +68,14 @@ public class UserController {
 			model.addAttribute("imageFromDisk",encodeFileBase64);
 		} 
 
-		User user1 = userService.findUserById(userId);
+		UserEntity user1 = userService.findUserById(userId);
 		model.addAttribute("userOne",user1);
 		System.out.println(user1);
 		return "user/detail";
 	}
 	
 	@PostMapping("/add")
-	public String saveUser(@ModelAttribute("userModel") @Valid User user, BindingResult result ) {
+	public String saveUser(@ModelAttribute("userModel") @Valid UserEntity user, BindingResult result ) {
 		if(result.hasErrors()) {
 			return "user/add";
 		}
@@ -90,20 +83,12 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	/*@GetMapping("/user/9/detail")
-	public String showUser(
-			Model model,
-			@PathVariable("userId") int userId
-			) {
-		User user = userService.findUserById(userId);
-		model.addAttribute("userMod",user);
-		return "user/detail";
-	}*/
+	
 	
 	@GetMapping("/{userId}/edit")
 	public String editUser(@PathVariable("userId") int userId, Model model ) {
 		
-		User user =userService.findUserById(userId);
+		UserEntity user =userService.findUserById(userId);
 		model.addAttribute("userEdit",user);
 		
 		return "user/edit";
@@ -117,7 +102,7 @@ public class UserController {
 			@RequestParam("phone") String phone) {
 		/*System.out.println(user);
 		System.out.println(result);*/
-		User user =userService.findUserById(userId);
+		UserEntity user =userService.findUserById(userId);
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setPhone(phone);
@@ -138,18 +123,18 @@ public class UserController {
 		
 		return "redirect:/user/"+userId+"/detail";
 	}
-	@PostMapping("/login")
+	/*@PostMapping("/login")
 	public String loginInSystem(
 			@RequestParam("login") String login,
 			@RequestParam("password") String password) {
 		System.out.println(login);
 		System.out.println(password);
-		User user = userService.findUserByLogin(login);
+		UserEntity user = userService.findUserByLogin(login);
 		if (user.getPassword().equals(password)) {
 			return "redirect:/user/"+user.getId()+"/detail";
 		}
 		else return "redirect:/";
 		
-	}
+	}*/
 
 }

@@ -9,20 +9,23 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ua.victoria.app.validation.annotation.UniqueUserLogin;
 
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity{
+@Getter @Setter @NoArgsConstructor
+public class UserEntity extends BaseEntity{
 	
 	@Column(name = "login")
-	@UniqueUserLogin(message = "User with this login already exists")
+	/*@UniqueUserLogin(message = "User with this login already exists")*/
 	private String login;
 	
 	@Column(name = "email")
-	@NotNull
-	@Email(message="Email is bad")
+	/*@NotNull
+	@Email(message="Email is bad")*/
 	private String email; 
 	
 	@Column(name = "password")
@@ -41,68 +44,17 @@ public class User extends BaseEntity{
 	
 	@Column(name = "last_name")
 	private String lastName;
-
-	public User() {
-		
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public UserRole getUserRole() {
-		return userRole;
-	}
-
-	public void setUserRole(UserRole userRole) {
-		this.userRole = userRole;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
+	@Column(name = "image_path")
+	private String imagePath;
+	
+	
+	private String token;
+	
+	@Column(name = "is_activated")
+	private boolean isActivated;
 
 	
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
 	@Override
 	public String toString() {
 		return "User [login=" + login + ", email=" + email + ", password=" + password + ", userRole=" + userRole

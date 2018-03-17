@@ -4,10 +4,11 @@ import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
-import ua.victoria.app.entity.User;
+import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.repository.UserRepository;
 import ua.victoria.app.service.UserService;
 
@@ -16,37 +17,41 @@ public class UserServiceImpl implements UserService{
 
 	
 	private UserRepository userRepository;
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(UserRepository userRepository,PasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
-	public void saveUser(User user) {
+	public void saveUser(UserEntity user) {
+		String password = user.getPassword();
+		user.setPassword(passwordEncoder.encode(password));
 		userRepository.save(user);
 	}
 
 	@Override
-	public List<User> findAllUsers() {
+	public List<UserEntity> findAllUsers() {
 		
 		return userRepository.findAll();
 	}
 
 	@Override
-	public User findUserById(int id) {
+	public UserEntity findUserById(int id) {
 		
 		return userRepository.findOne(id);
 	}
 
 	@Override
-	public User findUserByLogin(String login) {
+	public UserEntity findUserByLogin(String login) {
 		
 		return userRepository.findUserByLogin(login);
 	}
 
 	@Override
-	public void createFolder(User user) {
+	public void createFolder(UserEntity user) {
 		String id = user.getId().toString();
 		  File file = new File("D:\\tmp\\"+id);
 	        if (!file.exists()) {
@@ -57,6 +62,12 @@ public class UserServiceImpl implements UserService{
 	            }
 	        }
 		
+	}
+
+	@Override
+	public UserEntity findUserByEmail(String email) {
+		
+		return userRepository.findUserByEmail(email);
 	}
 
 	
