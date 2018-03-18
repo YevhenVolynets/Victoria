@@ -2,6 +2,7 @@ package ua.victoria.app.entity;
 
 import java.util.Date;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +12,12 @@ public class Calendar extends BaseEntity{
 	@Column(name = "number_tour")
 	private int numberTour;
 	
+	@Column(name = "ligue")
+	@Enumerated(EnumType.ORDINAL)
+	private Ligue ligue; 
+	
 	@Column(name = "date_game")
+	@Temporal(TemporalType.DATE)
 	private Date dateGame;
 	
 	@OneToOne
@@ -21,6 +27,12 @@ public class Calendar extends BaseEntity{
 	@OneToOne
 	@JoinColumn(name = "id_team_guest")
 	private Team teamGuest;
+	
+	@Column(name="score_home")
+	private int scoreHome;
+	
+	@Column(name = "score_guest")
+	private int scoreGuest;
 
 	public Calendar() {
 
@@ -39,13 +51,7 @@ public class Calendar extends BaseEntity{
 		this.numberTour = numberTour;
 	}
 
-	public Date getDateGame() {
-		return dateGame;
-	}
 
-	public void setDateGame(Date dateGame) {
-		this.dateGame = dateGame;
-	}
 
 	public Team getTeamHome() {
 		return teamHome;
@@ -62,8 +68,45 @@ public class Calendar extends BaseEntity{
 	public void setTeamGuest(Team teamGuest) {
 		this.teamGuest = teamGuest;
 	}
-	
-	
-	
+
+	public int getScoreHome() {
+		return scoreHome;
+	}
+
+	public void setScoreHome(int scoreHome) {
+		this.scoreHome = scoreHome;
+	}
+
+	public int getScoreGuest() {
+		return scoreGuest;
+	}
+
+	public void setScoreGuest(int scoreGuest) {
+		this.scoreGuest = scoreGuest;
+	}
+
+	public Ligue getLigue() {
+		return ligue;
+	}
+
+	public void setLigue(Ligue ligue) {
+		this.ligue = ligue;
+	}
+
+	@Override
+	public String toString() {
+		return "Calendar [numberTour=" + numberTour + ", ligue=" + ligue + ", dateGame=" + dateGame + ", teamHome="
+				+ teamHome + ", teamGuest=" + teamGuest + ", scoreHome=" + scoreHome + ", scoreGuest=" + scoreGuest
+				+ ", getId()=" + getId() + "]";
+	}
+
+	public Date getDateGame() {
+		return dateGame;
+	}
+
+	public void setDateGame(Date dateGame) {
+		this.dateGame = dateGame;
+	}
+
 
 }

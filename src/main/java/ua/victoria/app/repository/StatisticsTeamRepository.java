@@ -10,10 +10,14 @@ import org.springframework.stereotype.Repository;
 
 import ua.victoria.app.entity.Ligue;
 import ua.victoria.app.entity.StatisticsTeam;
+import ua.victoria.app.entity.Team;
 
 @Repository
 public interface StatisticsTeamRepository  extends JpaRepository<StatisticsTeam, Integer>{
 
 	@Query("SELECT s FROM StatisticsTeam s WHERE s.ligue = :ligue")
 	List<StatisticsTeam> findLigue(@Param("ligue") Ligue ligue);
+	
+	@Query("SELECT s FROM StatisticsTeam s WHERE s.team = :team")
+	StatisticsTeam findStatByTeam(@Param("team") Team team);
 }

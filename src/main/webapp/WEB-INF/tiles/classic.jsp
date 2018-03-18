@@ -17,6 +17,9 @@
             border-radius: 0;
         }
 
+		.text-white{
+		color:white;
+		}
         .footer {
             background-color: black;
             color: white;

@@ -1,13 +1,13 @@
 package ua.victoria.app.entity;
 
 public enum Ligue {
-	First(1),
-	Second(2);
-	  int val;
-	  private  Ligue (int val) {
+	First("Вища"),
+	Second("Перша");
+	  String val;
+	  private  Ligue (String val) {
 	        this.val = val;
 	    }
-	public int getVal() {
+	public String getVal() {
 		return val;
 	}
 }

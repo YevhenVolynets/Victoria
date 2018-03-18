@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ua.victoria.app.entity.Ligue;
 import ua.victoria.app.entity.StatisticsTeam;
+import ua.victoria.app.entity.Team;
 import ua.victoria.app.repository.StatisticsTeamRepository;
 import ua.victoria.app.service.StatisticsTeamService;
+import ua.victoria.app.service.TeamService;
 
 @Controller
 @RequestMapping("/statistics")
 public class StatisticsTeamController {
+	
+	@Autowired
+	private TeamService teamService;
 	
 	@Autowired
 	private StatisticsTeamService statisticsTeamService;
@@ -30,5 +35,14 @@ public class StatisticsTeamController {
 		
 		
 		return "statistics/team/statisticsTable";
+	}
+	
+	@GetMapping("/lastMatch")
+	public String showLastMatches() {
+		String nameTeam = "\"Вікторія\" 2004 Л.";
+		Team team = teamService.findTeamByNameTeam(nameTeam);
+		StatisticsTeam statistics = statisticsTeamService.findStatByTeam(team);
+		/*statistics.her;*/
+		return "statistics/lastMatches";
 	}
 }

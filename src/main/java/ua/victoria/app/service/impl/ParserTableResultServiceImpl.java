@@ -10,6 +10,7 @@ import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ua.victoria.app.entity.Ligue;
 import ua.victoria.app.entity.ParserTableResult;
 import ua.victoria.app.repository.ParserTableResultRepository;
 import ua.victoria.app.service.ParserTableResultService;
@@ -31,13 +32,13 @@ public class ParserTableResultServiceImpl implements ParserTableResultService {
 	}
 
 	@Override
-	public void connectToSite() throws IOException {
+	public void connectToSite(String id) throws IOException {
 		
 		//List<ParserTableResult> tableResult = new ArrayList<>();
 		
 		Document doc = Jsoup.connect("http://www.dufll.org.ua/tables/2017/dufll/2004/").get();
 
-		Element tableScoreOne = doc.getElementById("lt_28");
+		Element tableScoreOne = doc.getElementById(id);
 		
 		Object aqq;
 		int numNodes = 0;
@@ -136,6 +137,11 @@ public class ParserTableResultServiceImpl implements ParserTableResultService {
 			}
 			table.setListTeams(listTeams);
 			//tableResult.add(table);
+			
+			if(id.equals("lt_27")) {
+				table.setLigue(Ligue.First);
+			}else  table.setLigue(Ligue.Second);
+			
 			parserTableResultRepository.save(table);
 		}
 

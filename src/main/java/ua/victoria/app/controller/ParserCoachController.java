@@ -27,7 +27,7 @@ public class ParserCoachController {
 	public String goPars() throws IOException {
 		
 		parserCoachService.connectToSite();
-		return "redirect:/";
+		return "redirect:/admin";
 	}
 
 }

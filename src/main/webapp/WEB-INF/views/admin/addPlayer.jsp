@@ -1,23 +1,25 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="..\taglib.jsp" %>
-
-
-<h2>Add player</h2>
+<div style="display: flex; justify-content: center;align-items: center;">
+<div>
+<h2 class="text-white">Add player</h2>
 <form:form 
 action="${pageContext.request.contextPath}/admin/addPlayer"
 		method="POST"
 		modelAttribute="add">
-Ім`я:<form:input path="firstName"/><br>
-Прізвище:<form:input path="lastName"/><br>
-Номер на шортах:<form:input path="numberShirt"/><br>
+		
+<p class="text-white">Ім`я:</p><form:input path="firstName"/><br>
+<p class="text-white">Прізвище:</p><form:input path="lastName"/><br>
+<p class="text-white">Номер на шортах:</p><form:input path="numberShirt"/><br>
 
- Позиція: <form:select path="amplua">
+<p class="text-white"> Позиція:</p> <form:select path="amplua">
 			<form:options  items="${ampluaList}" itemLabel="amplua.val" />
-<%--  <c:forEach var = "amplua1" items= "${ampluaList}">
-<form:option  value="${amplua1.getAmplua().getVal()}"></form:option>
-</c:forEach>  --%>
 </form:select>
 
 <input type="submit" value="Відправити"/>
+
 </form:form>
 
+</div>
+</div>

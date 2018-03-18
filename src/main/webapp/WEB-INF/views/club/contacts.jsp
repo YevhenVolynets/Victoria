@@ -99,55 +99,82 @@ width:100%;
 	font-size: 16px;
 	font-weight: bold;
 }
+
+.card {
+    text-align: center;
+    margin: 2em 0;
+    padding: 2em;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.card-title {
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
+.card .glyphicon {
+    font-size: 4em;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 1em;
+    color: #444;
+}
+
+.card p {
+    line-height: 2;
+    margin: 2em 0;
+}
+
+.card .btn {
+    text-transform: uppercase;
+}
+
+.card .btn:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+
 </style>
 
 
 
 
+<section id="cards" class="container-fluid">
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card">
+        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+          <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+         </div>
+     </div><!-- End card 1 -->
+    <div class="col-sm-4">
+        <div class="card">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+         </div>
+     </div><!-- End card 2 -->
+    <div class="col-sm-4">
+        <div class="card">
+        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+          <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+         </div>
+     </div><!-- End card 3 -->
+</div>
+</section>
 
-			<div class="contact">
-				<h2 style="color: white">Контакти</h2>
-				<div class="contacts">
-					<div class="row " style="color: white">
-						<div class="col-sm-6">
-							<h3>Івашкевич Василь</h3>
-							<p>Головний тренер</p>
-
-						</div>
-						<div class="col-sm-6">
-							<h3>099-999-99-99</h3>
-
-						</div>
-
-					</div>
-					
-					<div class="row " style="color: white">
-						<div class="col-sm-6">
-							<h3>Волинець Євген</h3>
-							<p>Тренер голкіперів</p>
-
-						</div>
-						<div class="col-sm-6">
-							<h3>099-999-99-99</h3>
-
-						</div>
-
-					</div>
-					
-						<div class="row " style="color: white">
-						<div class="col-sm-6">
-							<h3>Lorem ipsum</h3>
-							<p>Тренер  lorem</p>
-
-						</div>
-						<div class="col-sm-6">
-							<h3>099-999-99-99</h3>
-
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4325.0594878884385!2d24.03686515977309!3d49.866959448643506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473adcfee5d005ef%3A0xfa580df0c2b27483!2z0KjQutC-0LvQsCDihJYgNTQ!5e0!3m2!1suk!2sua!4v1521331634459" width="90%" height="450" frameborder="2" style="border:5; margin-left: 5%; border-radius: 10%" allowfullscreen></iframe>
 

@@ -38,6 +38,7 @@ public class StatisticsTeamServiceImpl implements StatisticsTeamService {
 			statisticsTeam.setCountMatch(Integer.parseInt(result.getGame()));
 			statisticsTeam.setPoint(Integer.parseInt(result.getPoint()));
 			statisticsTeam.setRatingPosition(Integer.parseInt(result.getNumInTable()));
+			statisticsTeam.setLigue(result.getLigue());
 			
 			int indx =  result.getScoredMissedGoal().indexOf('-');
 			//System.out.println(indx);
@@ -75,5 +76,11 @@ public class StatisticsTeamServiceImpl implements StatisticsTeamService {
 	public List<StatisticsTeam> findSecondLigue() {
 		
 		return statisticsTeamRepository.findLigue(Ligue.Second);
+	}
+
+	@Override
+	public StatisticsTeam findStatByTeam(Team team) {
+		
+		return statisticsTeamRepository.findStatByTeam(team);
 	}
 }

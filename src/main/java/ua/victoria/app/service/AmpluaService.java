@@ -11,5 +11,7 @@ public interface AmpluaService {
 	List<Amplua> findAllAmplua();
 	
 	Amplua findAmpluaById(int id);
+	
+	void createAmplua();
 
 }

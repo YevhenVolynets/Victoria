@@ -8,6 +8,6 @@ public interface ParserTableResultService {
 	
 	void saveParserTableResult(ParserTableResult parserTableResult);
 	
-	void connectToSite() throws IOException;
+	void connectToSite(String id) throws IOException;
 
 }

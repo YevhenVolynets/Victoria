@@ -20,16 +20,21 @@ public class ParserTableResultController {
 	@Autowired
 	private StatisticsTeamService statisticsTeamService;
 	
-	@GetMapping("/addTable")
-	public String goPars() throws IOException {
-		parserTableResultService.connectToSite();
-		return "redirect:/";
+	@GetMapping("/addTablePremierLigue")
+	public String goPars1() throws IOException {
+		parserTableResultService.connectToSite("lt_27");
+		return "redirect:/admin";
+	}
+	@GetMapping("/addTableSecondLigue")
+	public String goPars2() throws IOException {
+		parserTableResultService.connectToSite("lt_28");
+		return "redirect:/admin";
 	}
 	
 	@GetMapping("/addFinalTable")
 	public String saveStatistics() {
 		statisticsTeamService.saveStatistics();
-		return "redirect:/";
+		return "redirect:/admin";
 	}
 
 }

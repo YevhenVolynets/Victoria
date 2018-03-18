@@ -3,6 +3,7 @@ package ua.victoria.app.service;
 import java.util.List;
 
 import ua.victoria.app.entity.StatisticsTeam;
+import ua.victoria.app.entity.Team;
 
 public interface StatisticsTeamService {
 
@@ -15,4 +16,6 @@ public interface StatisticsTeamService {
 	List<StatisticsTeam> findPremierLigue();
 	
 	List<StatisticsTeam> findSecondLigue();
+	
+	StatisticsTeam findStatByTeam(Team team);
 }
