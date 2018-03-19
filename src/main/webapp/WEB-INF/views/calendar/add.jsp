@@ -10,15 +10,15 @@
  <form:select path="ligue">
  <form:options  items="${ligueList}"  itemLabel="val"/>
  </form:select><br/><hr>
-  <p class="text-white">Дата гри:</p> <input type="date" name="dateGame1" /><br/><hr> 
- <p class="text-white">Команда дома:</p> 
+  <p class="text-white">Дата гри:</p> <input type="date" name="date" /><br/><hr> 
+  <p class="text-white">Команда дома:</p> 
  <form:select path="teamHome">
- <form:options  items="${teamsModel}" itemLabel="nameTeam" />
+ <form:options  items="${teamsModel}" itemLabel="nameTeam" itemValue="id"/>
  </form:select><br/><hr> 
  <p class="text-white">Команда в гостях:</p>
  <form:select path="teamGuest">
- <form:options  items="${teamsModel}" itemLabel="nameTeam" />
- </form:select><br/><hr>
+ <form:options  items="${teamsModel}" itemLabel="nameTeam"  itemValue="id"/>
+ </form:select><br/><hr> 
 
 <p class="text-white">Рахунок(Господарі):</p> <form:input path="scoreHome"/> <br/><hr>
 <p class="text-white">Рахунок(Гості):</p> <form:input path="scoreGuest"/> <br/><hr>

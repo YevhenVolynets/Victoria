@@ -85,10 +85,11 @@ public class UserController {
 	
 	
 	
-	@GetMapping("/{userId}/edit")
-	public String editUser(@PathVariable("userId") int userId, Model model ) {
+	@GetMapping("/edit")/*{userId}*/
+	public String editUser(/*@PathVariable("userId") int userId,*/ Model model,Principal principal ) {
 		
-		UserEntity user =userService.findUserById(userId);
+		UserEntity user =userService.findUserByEmail(principal.getName());
+		System.out.println(user);
 		model.addAttribute("userEdit",user);
 		
 		return "user/edit";

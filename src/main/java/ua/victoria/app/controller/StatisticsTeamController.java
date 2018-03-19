@@ -6,10 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ua.victoria.app.entity.Calendar;
 import ua.victoria.app.entity.Ligue;
 import ua.victoria.app.entity.StatisticsTeam;
 import ua.victoria.app.entity.Team;
 import ua.victoria.app.repository.StatisticsTeamRepository;
+import ua.victoria.app.service.CalendarService;
 import ua.victoria.app.service.StatisticsTeamService;
 import ua.victoria.app.service.TeamService;
 
@@ -19,6 +21,9 @@ public class StatisticsTeamController {
 	
 	@Autowired
 	private TeamService teamService;
+	
+	@Autowired
+	private CalendarService calendarService;
 	
 	@Autowired
 	private StatisticsTeamService statisticsTeamService;
@@ -38,11 +43,11 @@ public class StatisticsTeamController {
 	}
 	
 	@GetMapping("/lastMatch")
-	public String showLastMatches() {
+	public String showLastMatches(Model model) {
 		String nameTeam = "\"Вікторія\" 2004 Л.";
 		Team team = teamService.findTeamByNameTeam(nameTeam);
-		StatisticsTeam statistics = statisticsTeamService.findStatByTeam(team);
-		/*statistics.her;*/
-		return "statistics/lastMatches";
+		model.addAttribute("lastModel",calendarService.findLastMatch(team));
+		
+		return "statistics/lastMatch";/**/
 	}
 }

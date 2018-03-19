@@ -82,4 +82,10 @@ public class CalendarServiceImpl implements CalendarService{
 		return calendarRepository.findOne(id);
 	}
 
+	@Override
+	public Calendar findLastMatch(Team team) {
+	
+		return calendarRepository.findLastMatch(team).get(0);
+	}
+
 }

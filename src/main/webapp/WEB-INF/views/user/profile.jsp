@@ -141,7 +141,8 @@
        <div class="col-md-10 " style="margin-top:50px; ">
 
 <div class="panel panel-default">
-  <div class="panel-heading">  <h4 >Профіль</h4></div>
+  <div class="panel-heading">  <h4 >Профіль</h4> <h6><a href="${rootURL}edit/" style="font-size: 10px; color: aqua; text-decoration: none; float: right; ">Редагувати профіль</a>
+   </h6> </div>
    <div class="panel-body">
        
     <div class="box box-info">

@@ -152,8 +152,7 @@ public class AdminController {
 	
 	@PostMapping("/saveNewCalendar")
 	public String createCalendar(@ModelAttribute("calendarModel") Calendar calendar,
-								@RequestParam("dateGame1") String date, BindingResult result){
-		System.out.println(result.getAllErrors());
+								@RequestParam("date") String date){
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		

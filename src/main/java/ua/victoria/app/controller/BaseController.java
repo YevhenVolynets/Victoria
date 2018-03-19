@@ -73,8 +73,10 @@ public class BaseController {
 	}
 	
 	@GetMapping("/video")
-	public String showVideo() {
-		
+	public String showVideo(Model model) {
+		String aa="width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Kf5MkitxNk4\" frameborder=\"1\" allow=\"autoplay; encrypted-media\" allowfullscreen";
+
+		model.addAttribute("aa", aa);
 		
 		return "video";
 	}

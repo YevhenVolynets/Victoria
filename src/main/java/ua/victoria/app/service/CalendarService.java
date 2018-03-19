@@ -3,6 +3,7 @@ package ua.victoria.app.service;
 import java.util.List;
 
 import ua.victoria.app.entity.Calendar;
+import ua.victoria.app.entity.Team;
 
 public interface CalendarService {
 	
@@ -13,4 +14,6 @@ public interface CalendarService {
 	List<Calendar> findAllCalendar();
 	
 	Calendar findOneCalendar(int id);
+	
+	Calendar findLastMatch(Team team);
 }
