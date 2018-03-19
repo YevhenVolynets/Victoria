@@ -184,27 +184,32 @@
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Рік Народження:</div><div class="col-sm-6">${user.email}</div>
+<div class="col-sm-6 col-xs-6 tital " >Рік Народження:</div><div class="col-sm-6">${user.userDetail.birthday}</div>
 
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Дата народження:</div><div class="col-sm-6">${user.email}</div>
+<div class="col-sm-6 col-xs-6 tital " >Дата народження:</div><div class="col-sm-6">${user.userDetail.birthday}</div>
 
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Місце проживання:</div><div class="col-sm-6">${user.email}</div>
+<div class="col-sm-6 col-xs-6 tital " >Місце проживання:</div><div class="col-sm-6">${user.userDetail.city}</div>
 
  <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Веб-сайт:</div><div class="col-sm-6">${user.email}</div>
+<div class="col-sm-6 col-xs-6 tital " >Веб-сайт:</div><div class="col-sm-6">${user.userDetail.webSite}</div>
 
  <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-6 col-xs-6 tital " >Телефон:</div><div class="col-sm-6"> ${user.userDetail.phone} </div>
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-6 col-xs-6 tital " >Хоббі:</div><div class="col-sm-6"> ${user.userDetail.hobby} </div>
 
 
             

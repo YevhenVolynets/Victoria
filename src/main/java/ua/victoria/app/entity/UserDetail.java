@@ -48,8 +48,16 @@ public class UserDetail extends BaseEntity{
 	@Column(name = "image_path")
 	private String imagePath;
 	
-	@OneToOne(mappedBy = "userDetail",fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "userDetail")
 	private UserEntity userEntity;
+
+	@Override
+	public String toString() {
+		return "UserDetail [firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", city=" + city
+				+ ", birthday=" + birthday + ", webSite=" + webSite + ", phone=" + phone + ", gender=" + gender
+				+ ", hobby=" + hobby + ", imagePath=" + imagePath + ", userEntity=" + userEntity + ", getId()="
+				+ getId() + "]";
+	}
 	
 	
 

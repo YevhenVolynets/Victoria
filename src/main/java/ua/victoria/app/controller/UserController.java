@@ -5,12 +5,17 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +35,7 @@ import ua.victoria.app.editor.UserEditor;
 import ua.victoria.app.entity.UserDetail;
 import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.entity.UserRole;
+import ua.victoria.app.service.UserDetailService;
 import ua.victoria.app.service.UserService;
 
 @Controller
@@ -39,6 +45,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserDetailService userDetailService;
 	
 	@InitBinder("user") //вказується назва сессії
 	protected void initBinder(WebDataBinder binder) {
@@ -91,11 +100,22 @@ public class UserController {
 	@GetMapping("/edit")/*{userId}*/
 	public String editUser(/*@PathVariable("userId") int userId,*/ Model model,Principal principal ) {
 		
-		UserEntity user =userService.findUserByEmail(principal.getName());
-		System.out.println(user);
-		model.addAttribute("userEdit",user);
+		/*UserEntity userEntity =userService.findUserByEmail(principal.getName());
+		if(userEntity.getUserDetail()== null) {
+		UserDetail userDetail = new UserDetail();
+		userEntity.setUserDetail(userDetail);
+		userDetailService.saveUserDetail(userDetail);
+		}
+		else {
+			System.out.println(userEntity);
+		}
+		*/
 		
-		return "user/edit";
+		System.out.println(userService.findUserByEmail(principal.getName()));
+		
+		/*model.addAttribute("userEdit",user);*/
+		
+		return "home";
 	}
 	
 	@PostMapping("/{userId}/edit")
@@ -143,4 +163,6 @@ public class UserController {
 		
 	}*/
 
+
 }
+	

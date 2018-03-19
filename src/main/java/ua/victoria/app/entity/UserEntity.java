@@ -15,11 +15,11 @@ import org.hibernate.validator.constraints.Email;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ua.victoria.app.validation.annotation.UniqueUserLogin;
+
 
 @Entity
 @Table(name = "user")
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter 
 public class UserEntity extends BaseEntity{
 	
 	@Column(name = "login")
@@ -44,9 +44,11 @@ public class UserEntity extends BaseEntity{
 	@Column(name = "is_activated")
 	private boolean isActivated;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne()
 	@JoinColumn(name = "id_user_detail")
 	private UserDetail  userDetail;
+	
+	
 
 	@Override
 	public String toString() {
@@ -55,7 +57,13 @@ public class UserEntity extends BaseEntity{
 				+ getId() + "]";
 	}
 
-	 
+
+
+	public UserEntity() {
+		
+	}
+
+	
 	 
 	
 	
