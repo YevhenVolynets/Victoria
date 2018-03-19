@@ -13,4 +13,4 @@
 <a href="${rootURL}/parser/addTableSecondLigue">Парсинг таблиці результатів другої ліги</a><br><br>
 <a href="${rootURL}/parser/addFinalTable">Cтворення фінальної таблиці</a><br><br>
 <a href="${rootURL}/admin/addCalendar">Cтворення календаря з парсингу</a><br><br>
-<a href="${rootURL}/admin/editCalendar">Редагуванняі календаря</a><br><br>
+<a href="${rootURL}/admin/editCalendar">Редагування календаря</a><br><br>

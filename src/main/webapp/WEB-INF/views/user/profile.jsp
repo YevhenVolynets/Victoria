@@ -162,7 +162,7 @@
               <!-- /input-group -->
             </div>
             <div class="col-sm-6">
-            <h4 style="color:#00b1b1;">${user.firstName } ${user.lastName }</h4></span>
+            <h4 style="color:#00b1b1;"> ${user.userDetail.firstName } ${user.userDetail.lastName }</h4></span>
             <c:choose>
               <c:when test="${user.activated}"><span class="glyphicon glyphicon-ok-sign" style="color:green"><p>Активний</p></span></c:when> 
              <c:otherwise> <span class="glyphicon glyphicon-exclamation-sign" style="color:red"><p>Не активний</p> </span>  </c:otherwise>          
@@ -172,11 +172,11 @@
             <hr style="margin:5px 0 5px 0;">
     
               
-<div class="col-sm-6 col-xs-6 tital " >Ім`я:</div><div class="col-sm-6 col-xs-6 ">${user.firstName}</div>
+<div class="col-sm-6 col-xs-6 tital " >Ім`я:</div><div class="col-sm-6 col-xs-6 ">${user.userDetail.firstName} </div>
      <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Прізвище:</div><div class="col-sm-6"> ${user.lastName}</div>
+<div class="col-sm-6 col-xs-6 tital " >Прізвище:</div><div class="col-sm-6"> ${user.userDetail.lastName} </div>
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
@@ -204,7 +204,7 @@
  <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Телефон:</div><div class="col-sm-6">${user.phone}</div>
+<div class="col-sm-6 col-xs-6 tital " >Телефон:</div><div class="col-sm-6"> ${user.userDetail.phone} </div>
 
 
             

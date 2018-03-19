@@ -165,8 +165,7 @@ public class AdminController {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-		
-		  System.out.println(calendar);
+	
 		calendarService.saveCalendar(calendar);
 		return "redirect:/admin/editCalendar";
 	}

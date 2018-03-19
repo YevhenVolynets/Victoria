@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import ua.victoria.app.editor.UserEditor;
+import ua.victoria.app.entity.UserDetail;
 import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.entity.UserRole;
 import ua.victoria.app.service.UserService;
@@ -47,6 +48,8 @@ public class UserController {
 	@GetMapping("/profile")
 	public String showProfile(Model model,Principal principal) { 
 		UserEntity entity = userService.findUserByEmail(principal.getName());
+		UserDetail userDetail = new UserDetail();
+		entity.setUserDetail(userDetail);
 		model.addAttribute("user", entity);
 		return "user/profile";
 	}
@@ -104,10 +107,12 @@ public class UserController {
 		/*System.out.println(user);
 		System.out.println(result);*/
 		UserEntity user =userService.findUserById(userId);
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setPhone(phone);
+		/*UserDetail userDetail = new UserDetail();*/
 		
+		/*userDetail.setFirstName(firstName);
+		userDetail.setLastName(lastName);
+		userDetail.setPhone(phone);
+		*/
 		userService.saveUser(user);
 		
 		return "redirect:/user/"+user.getId()+"/detail";
