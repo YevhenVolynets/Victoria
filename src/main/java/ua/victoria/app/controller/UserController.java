@@ -4,8 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -39,7 +42,7 @@ import ua.victoria.app.service.UserDetailService;
 import ua.victoria.app.service.UserService;
 
 @Controller
-@SessionAttributes("userModel")
+@SessionAttributes({"userModel","userEdit"})
 @RequestMapping("/user")
 public class UserController {
 	
@@ -57,8 +60,15 @@ public class UserController {
 	@GetMapping("/profile")
 	public String showProfile(Model model,Principal principal) { 
 		UserEntity entity = userService.findUserByEmail(principal.getName());
-		UserDetail userDetail = new UserDetail();
-		entity.setUserDetail(userDetail);
+		UserDetail userDetail;
+		if(entity.getUserDetail()== null) {
+			 userDetail = new UserDetail();
+			 entity.setUserDetail(userDetail);
+			 userDetailService.saveUserDetail(userDetail);
+		}
+		System.out.println(entity);
+		System.out.println(entity.getUserDetail());
+		
 		model.addAttribute("user", entity);
 		return "user/profile";
 	}
@@ -100,22 +110,43 @@ public class UserController {
 	@GetMapping("/edit")/*{userId}*/
 	public String editUser(/*@PathVariable("userId") int userId,*/ Model model,Principal principal ) {
 		
-		/*UserEntity userEntity =userService.findUserByEmail(principal.getName());
-		if(userEntity.getUserDetail()== null) {
-		UserDetail userDetail = new UserDetail();
-		userEntity.setUserDetail(userDetail);
-		userDetailService.saveUserDetail(userDetail);
-		}
-		else {
-			System.out.println(userEntity);
-		}
-		*/
+		UserEntity userEntity =userService.findUserByEmail(principal.getName());
 		
-		System.out.println(userService.findUserByEmail(principal.getName()));
 		
-		/*model.addAttribute("userEdit",user);*/
+		System.out.println("edituser:"+ userEntity);
 		
-		return "home";
+
+		System.out.println("edituserdetail:"+userEntity.getUserDetail());
+		
+		userService.updateUser(userEntity);
+		
+		/*System.out.println((principal.getName()));*/
+		model.addAttribute("userEdit",userEntity);
+		
+		return "user/edit";
+	} 
+	
+	@PostMapping("/saveuser")
+	public String saveUserEdit(@ModelAttribute("userEdit") UserEntity userEntity,@RequestParam("birthday") String date) {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		  try {
+
+	          Date date1 = formatter.parse(date);  
+	          UserDetail userDetail = userEntity.getUserDetail();
+	          userDetail.setBirthday(date1);
+	          formatter.format(date1);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		 
+		
+		System.out.println("qeqeqeqe " + userEntity.getUserDetail());
+		userDetailService.saveUserDetail(userEntity.getUserDetail());
+		userService.updateUser(userEntity);
+		return "redirect:/user/profile"; 
 	}
 	
 	@PostMapping("/{userId}/edit")

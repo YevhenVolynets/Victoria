@@ -199,7 +199,7 @@
  <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Веб-сайт:</div><div class="col-sm-6">${user.userDetail.webSite}</div>
+<div class="col-sm-6 col-xs-6 tital " >Веб-сайт:</div><div class="col-sm-6"><a href="${user.userDetail.webSite}">${user.userDetail.webSite}</a></div>
 
  <div class="clearfix"></div>
 <div class="bot-border"></div>

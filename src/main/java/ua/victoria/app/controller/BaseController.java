@@ -21,9 +21,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+
+import ua.victoria.app.domain.RegisterRequest;
 import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.entity.UserRole;
+import ua.victoria.app.mapper.UserMapper;
 import ua.victoria.app.service.UserService;
 
 @Controller
@@ -40,7 +44,7 @@ public class BaseController {
 	
 	@GetMapping("/")
 	public String showUserAddPAge(Model model) {
-		Document doc = null;
+		/*Document doc = null;
 		try {
 			doc = Jsoup.connect("https://www.ua-football.com/ua").get();
 		} catch (IOException e) {
@@ -52,12 +56,51 @@ public class BaseController {
 		for(int i=3;i<23;i+=2) {
 			list.add(tableScoreOne.childNode(1).childNode(i).toString());
 		}
-		model.addAttribute("list1", list);
+		model.addAttribute("list1", list);*/
 		
-		model.addAttribute("userModelka", new UserEntity());
+		model.addAttribute("userModelka", new RegisterRequest());
 		model.addAttribute("userRoless",UserRole.values());
 		
 		return "home";
+	}
+	
+	@PostMapping("/register")
+	public ModelAndView saveUser(@Valid @ModelAttribute("userModelka") RegisterRequest request,BindingResult result) {
+		if(result.hasErrors()){
+			return new ModelAndView("register");
+		}
+		try {
+		userService.saveUser(UserMapper.registerToEntity(request));
+		}catch (Exception e) {
+			return new ModelAndView("register","error","Opps..Can`t save user."); 
+		}
+		return new ModelAndView("redirect:/");
+	}
+	
+	@GetMapping("/verify")
+	public String verifyUser(@RequestParam("token") String token,
+			@RequestParam("userid") String useridStr,
+			Model model) {
+		
+		try {
+			int userId = Integer.valueOf(useridStr);
+			UserEntity entity  = userService.findUserById(userId);
+			
+			if(entity != null) {
+				if(entity.getToken().equals(token)) {
+					entity.setToken("");
+					entity.setActivated(true);
+					
+					userService.updateUser(entity);
+				}
+			}
+		}
+		catch (Exception e) {
+			model.addAttribute("error", "Opps..Verify error");
+			return "verify/verify-error";
+		}
+		
+		return "verify/verify-success";
 	}
 	
 	/*@PostMapping("/")

@@ -76,28 +76,21 @@
 							<h3 class="panel-title">Sign Up</h3>
 						</div>
 						<div class="panel-body">
-							<form:form action="${pageContext.request.contextPath}/"
+							<form:form action="${pageContext.request.contextPath}/register"
 								method="POST" modelAttribute="userModelka">
 								<fieldset>
+									
 									<div class="form-group">
-
-										<input class="form-control" placeholder="Username"
-											name="login" type="text" autofocus="">
-										
+										<form:input cssClass="form-control" placeholder=" Email"
+											path="email"/>
 									</div>
 									<div class="form-group">
-										<input class="form-control" placeholder="E-mail" name="email"
-											type="email" autofocus="">
-										
+										<form:password cssClass="form-control" placeholder=" Password"
+											path="password"/>
 									</div>
 									<div class="form-group">
-										<input class="form-control" placeholder="Password"
-											name="password" type="password" value="">
-										
-									</div>
-									<div class="form-group">
-										<input class="form-control" placeholder=" Confirm Password"
-											name="password2" type="password" value="">
+										<form:password cssClass="form-control" placeholder=" Confirm Password"
+											path="passwordConfirmation"/>
 									</div>
 
 									<input type="submit" class="btn btn-sm btn-success"
@@ -131,7 +124,7 @@
 											name="password" type="password" value="">
 									</div>
 									<div class="checkbox">
-										<label> <input name="rememberme" type="checkbox">Remember
+										<label> <input name="rememberMe" type="checkbox">Remember
 											Me
 										</label>
 									</div>

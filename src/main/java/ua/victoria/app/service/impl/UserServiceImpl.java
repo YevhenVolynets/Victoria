@@ -96,5 +96,11 @@ public class UserServiceImpl implements UserService{
 		+entity.getId());
 		emailService.sendMessage(mail);
 	}
+
+	@Override
+	public void updateUser(UserEntity user) {
+		userRepository.save(user);
+		
+	}
 	
 }

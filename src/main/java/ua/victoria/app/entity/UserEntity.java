@@ -50,17 +50,24 @@ public class UserEntity extends BaseEntity{
 	
 	
 
-	@Override
-	public String toString() {
-		return "UserEntity [login=" + login + ", email=" + email + ", password=" + password + ", userRole=" + userRole
-				+ ", token=" + token + ", isActivated=" + isActivated + ", userDetail=" + userDetail + ", getId()="
-				+ getId() + "]";
-	}
+	
 
 
 
 	public UserEntity() {
 		
+	}
+
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "UserEntity [login=" + login + ", email=" + email + ", password=" + password + ", userRole=" + userRole
+				+ ", token=" + token + ", isActivated=" + isActivated + ", getId()=" + getId() + "]";
 	}
 
 	
