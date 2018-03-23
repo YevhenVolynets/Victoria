@@ -28,6 +28,7 @@ import ua.victoria.app.domain.RegisterRequest;
 import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.entity.UserRole;
 import ua.victoria.app.mapper.UserMapper;
+import ua.victoria.app.service.StatisticsTeamService;
 import ua.victoria.app.service.UserService;
 
 @Controller
@@ -36,6 +37,9 @@ public class BaseController {
 	
 	@Autowired
 	private UserService userService;  
+	
+	@Autowired
+	private StatisticsTeamService statisticsTeamService;
 	/*@GetMapping("/")
 	public String showHome() {
 		
@@ -44,7 +48,7 @@ public class BaseController {
 	
 	@GetMapping("/")
 	public String showUserAddPAge(Model model) {
-		/*Document doc = null;
+		Document doc = null;
 		try {
 			doc = Jsoup.connect("https://www.ua-football.com/ua").get();
 		} catch (IOException e) {
@@ -56,10 +60,11 @@ public class BaseController {
 		for(int i=3;i<23;i+=2) {
 			list.add(tableScoreOne.childNode(1).childNode(i).toString());
 		}
-		model.addAttribute("list1", list);*/
+		model.addAttribute("list1", list);
 		
 		model.addAttribute("userModelka", new RegisterRequest());
 		model.addAttribute("userRoless",UserRole.values());
+		model.addAttribute("listStat2", statisticsTeamService.findSecondLigue());
 		
 		return "home";
 	}
@@ -148,6 +153,18 @@ public class BaseController {
 		
 		
 		return "club/contacts";
+	}
+	
+	@GetMapping("/shop")
+	public String showMagazine() {
+		
+		return "tmp";
+	}
+	
+	@GetMapping("/victoria-2009")
+	public String showVictoria2009() {
+		
+		return "tmp";
 	}
 	
 	

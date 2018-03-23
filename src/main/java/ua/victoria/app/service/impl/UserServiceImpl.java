@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService{
 		mail.setSubject("You are successfully registered");
 		mail.setContent("Please verify your email by this link "
 		+domain
-		+"/verify?token="
+		+"verify?token="
 		+token+"&userid="
 		+entity.getId());
 		emailService.sendMessage(mail);

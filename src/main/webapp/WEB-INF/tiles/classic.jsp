@@ -96,6 +96,35 @@
 	font-size: 16px;
 	font-weight: bold;
 }
+.table>thead>tr>th{border-bottom: none;}
+.exotic-table{
+    color:#fff;
+    background: #191919;
+    text-align: center;
+    border: none;
+}
+.exotic-table thead tr{
+    border: 2px #333 outset;
+    text-align: center;
+}
+.exotic-table thead>tr>th{
+    text-align: center;
+}
+.exotic-table tbody{
+    border:2px outset #333;
+    border-top:none
+}
+
+.exotic-table tbody tr{
+    background: #222;
+}
+.exotic-table tbody tr:hover{
+    box-shadow:0 0 20px #000;
+    background:#1a1a1a;
+}
+.exotic-table tbody tr td{
+    border-bottom:2px outset #333;
+}
 </style>
 </head>
 <body>
