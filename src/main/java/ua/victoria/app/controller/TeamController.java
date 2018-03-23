@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -47,6 +48,13 @@ public class TeamController {
 	public String writeTeam() {
 		teamService.saveTeamWithTable();
 		return "redirect:/";
+	}
+	
+	@GetMapping("/{idTeam}")
+	public String showOneTeam(@PathVariable("idTeam") int id,Model model) {
+		Team team = teamService.findTeamById(id);
+		model.addAttribute("oneTeam", team);
+		return "team/oneteam";
 	}
 	
 

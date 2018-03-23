@@ -110,7 +110,8 @@ th {
 
 				<tbody class="panel-body">
 					<c:forEach var="stat" items="${listStat1}">
-						<tr>
+						<tr onclick="window.location.href='/team/${stat.id}'; return false">
+						
 							<td>${stat.ratingPosition}</td>
 							<td>${stat.team.nameTeam}</td>
 							<td>${stat.countMatch}</td>
@@ -120,6 +121,7 @@ th {
 							<td>${stat.scoredGoal}</td>
 							<td>${stat.missedGoal}</td>
 							<td>${stat.point}</td>
+						
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -151,7 +153,7 @@ th {
 
 				<tbody class="panel-body">
 					<c:forEach var="stat" items="${listStat2}">
-						<tr>
+						<tr onclick="window.location.href='/team/${stat.id}'; return false">
 							<td>${stat.ratingPosition}</td>
 							<td>${stat.team.nameTeam}</td>
 							<td>${stat.countMatch}</td>
