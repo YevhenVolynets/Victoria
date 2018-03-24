@@ -38,8 +38,10 @@ import ua.victoria.app.editor.UserEditor;
 import ua.victoria.app.entity.UserDetail;
 import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.entity.UserRole;
+import ua.victoria.app.entity.enumerated.Gender;
 import ua.victoria.app.service.UserDetailService;
 import ua.victoria.app.service.UserService;
+import ua.victoria.app.service.utils.CustomFileUtils;
 
 @Controller
 @SessionAttributes({"userModel","userEdit"})
@@ -58,7 +60,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/profile")
-	public String showProfile(Model model,Principal principal) { 
+	public String showProfile(Model model,Principal principal) throws IOException { 
+		
 		UserEntity entity = userService.findUserByEmail(principal.getName());
 		UserDetail userDetail;
 		if(entity.getUserDetail()== null) {
@@ -66,17 +69,40 @@ public class UserController {
 			 entity.setUserDetail(userDetail);
 			 userDetailService.saveUserDetail(userDetail);
 		}
-		System.out.println(entity);
-		System.out.println(entity.getUserDetail());
+		System.out.println(CustomFileUtils.getImage(entity));
+		/*entity.getUserDetail().setImagePath(CustomFileUtils.getImage(entity));*/
+		
+		/*userService.updateUser(entity);*/
+		
+		model.addAttribute("img", CustomFileUtils.getImage(entity));
+		
+		/*File folder = CustomFileUtils.createFolder("user_"+entity.getId());
+		
+		if ((new File(folder.toString()+CustomFileUtils.SEPARATOR+"logo.png")).exists()) {
+			File file = new File("D:/tmp/"+entity.getId()+"/logo.png");
+			
+			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
+			String encodeFileBase64 = new String(encodeFileToByte);
+			model.addAttribute("imageFromDisk",encodeFileBase64);
+		} else {
+			File file = new File("D:/tmp/default.png");
+			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
+			String encodeFileBase64 = new String(encodeFileToByte);
+			model.addAttribute("imageFromDisk",encodeFileBase64);
+		} */
+		
 		
 		model.addAttribute("user", entity);
 		return "user/profile";
 	}
 	
+
 	@GetMapping("/{userId}/detail")
 	public String showUser(@PathVariable("userId") int userId, Model model) throws IOException {
 		
 		String fileName = "D:/tmp/"+userId+"/logo.png";
+		
+		
 		if ((new File(fileName)).exists()) {
 			File file = new File("D:/tmp/"+userId+"/logo.png");
 			
@@ -94,59 +120,6 @@ public class UserController {
 		model.addAttribute("userOne",user1);
 		System.out.println(user1);
 		return "user/detail";
-	}
-	
-	@PostMapping("/add")
-	public String saveUser(@ModelAttribute("userModel") @Valid UserEntity user, BindingResult result ) {
-		if(result.hasErrors()) {
-			return "user/add";
-		}
-		userService.saveUser(user);
-		return "redirect:/";
-	}
-	
-	
-	
-	@GetMapping("/edit")/*{userId}*/
-	public String editUser(/*@PathVariable("userId") int userId,*/ Model model,Principal principal ) {
-		
-		UserEntity userEntity =userService.findUserByEmail(principal.getName());
-		
-		
-		System.out.println("edituser:"+ userEntity);
-		
-
-		System.out.println("edituserdetail:"+userEntity.getUserDetail());
-		
-		userService.updateUser(userEntity);
-		
-		/*System.out.println((principal.getName()));*/
-		model.addAttribute("userEdit",userEntity);
-		
-		return "user/edit";
-	} 
-	
-	@PostMapping("/saveuser")
-	public String saveUserEdit(@ModelAttribute("userEdit") UserEntity userEntity,@RequestParam("birthday") String date) {
-		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		
-		  try {
-
-	          Date date1 = formatter.parse(date);  
-	          UserDetail userDetail = userEntity.getUserDetail();
-	          userDetail.setBirthday(date1);
-	          formatter.format(date1);
-
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-		 
-		
-		System.out.println("qeqeqeqe " + userEntity.getUserDetail());
-		userDetailService.saveUserDetail(userEntity.getUserDetail());
-		userService.updateUser(userEntity);
-		return "redirect:/user/profile"; 
 	}
 	
 	@PostMapping("/{userId}/edit")
@@ -169,16 +142,65 @@ public class UserController {
 		return "redirect:/user/"+user.getId()+"/detail";
 	}
 	
-	@PostMapping("/{userId}/edit/img")
-	public String saveFileToDisk(@PathVariable("userId") int userId,@RequestParam("fileUpload") MultipartFile file) throws IOException {
+	
+	@PostMapping("/add")
+	public String saveUser(@ModelAttribute("userModel") @Valid UserEntity user, BindingResult result ) {
+		if(result.hasErrors()) {
+			return "user/add";
+		}
+		userService.saveUser(user);
+		return "redirect:/";
+	}
+	
+	
+	
+	@GetMapping("/edit")/*{userId}*/
+	public String editUser(/*@PathVariable("userId") int userId,*/ Model model,Principal principal ) {
 		
+		UserEntity userEntity =userService.findUserByEmail(principal.getName());
+		
+		userService.updateUser(userEntity);
+		List<Gender> list = new ArrayList<>();
+		list.add(Gender.MAN);list.add(Gender.WONAN);
+		model.addAttribute("sex", list);
+		model.addAttribute("userEdit",userEntity);
+		
+		return "user/edit";
+	} 
+	
+	@PostMapping("/saveuser")
+	public String saveUserEdit(@ModelAttribute("userEdit") UserEntity userEntity,@RequestParam("birthday") String date) {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		  try {
+
+	          Date date1 = formatter.parse(date);  
+	          UserDetail userDetail = userEntity.getUserDetail();
+	          userDetail.setBirthday(date1);
+	          formatter.format(date1);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		 
+		userDetailService.saveUserDetail(userEntity.getUserDetail());
+		userService.updateUser(userEntity);
+		return "redirect:/user/profile"; 
+	}
+	
+	
+	
+	@PostMapping("/edit/img")
+	public String saveFileToDisk(@RequestParam("fileUpload") MultipartFile file,Principal principal) throws IOException {
+		UserEntity entity = userService.findUserByEmail(principal.getName());
 		if (!file.isEmpty() && file!=null) {
 			BufferedImage image = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-			File dest = new File("D:/tmp/" +userId+"/logo.png");
+			File dest = new File(CustomFileUtils.ROOT_PATH+CustomFileUtils.SEPARATOR+"user_"+entity.getId()+CustomFileUtils.SEPARATOR+"logo.png");
 			ImageIO.write(image, "png", dest);
 		}
 		
-		return "redirect:/user/"+userId+"/detail";
+		return "redirect:/user/profile";
 	}
 	/*@PostMapping("/login")
 	public String loginInSystem(

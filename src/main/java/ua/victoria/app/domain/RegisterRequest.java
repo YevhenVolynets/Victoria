@@ -17,7 +17,7 @@ import ua.victoria.app.validation.annotation.UniqueUserEmail;
 @CheckPasswordRepeat
 public class RegisterRequest {
 
-	@Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,63}$", message = "Typed email has not correct format")
+	@Pattern(regexp = "[a-zA-Z].+[a-zA-Z0-9+.]+@[A-Za-z]{2,5}+.[A-Za-z]{1,4}$", message = "Typed email has not correct format")
 	@UniqueUserEmail
 	@NotEmpty private String email;
 	@NotEmpty private String password;

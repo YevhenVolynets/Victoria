@@ -12,5 +12,6 @@
     <form:input path="userDetail.webSite"  placeholder="Веб-сайт" />
     <form:input path="userDetail.phone"  placeholder="Телефон"/>
     <form:input path="userDetail.hobby" placeholder="Хоббі"/>
+    <form:radiobuttons path="userDetail.gender" items="${sex}" itemLabel="val"/>
     <input type="submit" value="send"/>
     </form:form>

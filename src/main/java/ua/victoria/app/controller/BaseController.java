@@ -71,6 +71,8 @@ public class BaseController {
 	
 	@PostMapping("/register")
 	public ModelAndView saveUser(@Valid @ModelAttribute("userModelka") RegisterRequest request,BindingResult result) {
+		System.out.println(request.getEmail());
+		System.out.println(result.getAllErrors());
 		if(result.hasErrors()){
 			return new ModelAndView("register");
 		}
@@ -155,6 +157,27 @@ public class BaseController {
 		return "club/contacts";
 	}
 	
+	@GetMapping("/leadership")
+	public String showLeadership() {
+		
+		
+		return "club/leadership";
+	}
+	
+	@GetMapping("/symbols")
+	public String showSymbols() {
+		
+		
+		return "club/symbols";
+	}
+	
+	@GetMapping("/history")
+	public String showHistory() {
+		
+		
+		return "club/history";
+	}
+	
 	@GetMapping("/shop")
 	public String showMagazine() {
 		
@@ -166,6 +189,6 @@ public class BaseController {
 		
 		return "tmp";
 	}
-	
+
 	
 }

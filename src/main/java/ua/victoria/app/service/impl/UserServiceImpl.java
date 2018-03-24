@@ -16,6 +16,7 @@ import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.repository.UserRepository;
 import ua.victoria.app.service.EmailService;
 import ua.victoria.app.service.UserService;
+import ua.victoria.app.service.utils.CustomFileUtils;
 import ua.victoria.app.service.utils.TokenGenerator;
 
 @Service
@@ -37,13 +38,16 @@ public class UserServiceImpl implements UserService{
 	public void saveUser(UserEntity user) {
 		String password = user.getPassword();
 		user.setPassword(passwordEncoder.encode(password));
+		System.out.println(user.getPassword());
 		String token = TokenGenerator.generate(100);
 		user.setToken(token);
+		System.out.println(user.getToken());
 		user.setActivated(false);
 		
 		userRepository.save(user);
-		
-		sendEmail(token, user);
+		File file = CustomFileUtils.createFolder("user_"+user.getId());
+		System.out.println(file);
+		/*sendEmail(token, user);*/
 	}
 
 	@Override
@@ -65,20 +69,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void createFolder(UserEntity user) {
-		String id = user.getId().toString();
-		  File file = new File("D:\\tmp\\"+id);
-	        if (!file.exists()) {
-	            if (file.mkdir()) {
-	                System.out.println("Directory is created!");
-	            } else {
-	                System.out.println("Failed to create directory!");
-	            }
-	        }
-		
-	}
-
-	@Override
 	public UserEntity findUserByEmail(String email) {
 		
 		return userRepository.findUserByEmail(email);
@@ -94,6 +84,7 @@ public class UserServiceImpl implements UserService{
 		+"verify?token="
 		+token+"&userid="
 		+entity.getId());
+		System.out.println(mail);
 		emailService.sendMessage(mail);
 	}
 

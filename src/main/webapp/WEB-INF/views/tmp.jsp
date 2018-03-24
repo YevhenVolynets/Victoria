@@ -22,4 +22,6 @@
     </style>
     <div class="verySoon">
     <div class="a"><i>We`ll open very soon ^_^</i></div>
+    
+    
     </div>

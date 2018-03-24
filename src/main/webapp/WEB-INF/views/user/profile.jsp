@@ -149,11 +149,14 @@
         
             <div class="box-body">
                      <div class="col-sm-6">
-                     <div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
-                
-                <input id="profile-image-upload" class="hidden" type="file">
+                     <div  align="center"> <img alt="User Pic" src="data:img/png; base64, ${img}" id="profile-image1" class="img-circle img-responsive"> 
+                <form:form action="${pageContext.request.contextPath}/user/edit/img" method="POST" 
+enctype="multipart/form-data">
+                <input id="profile-image-upload" class="hidden" type="file" name="fileUpload">
+                <input type="submit" value = "Upload file" class = "btn btn-primary">
+                </form:form>
 <div style="color:#999;" >click here to change profile image</div>
-                <!--Upload Image Js And Css-->
+               
 
                      </div>
               
@@ -240,39 +243,10 @@
        
    </div>
  
- <%-- <div class="imgProfile">
-    <img  class="fotoProfile" src="data:image/png;base64, ${imageFromDisk}" alt="profile" style="
-      height: 200px;
-            width: 300px">
-            <form action="${pageContext.request.contextPath}/user/${userOne.id}/edit/img" method="POST" 
-enctype="multipart/form-data">
-<input type="file" name = "fileUpload">
-
-<input type="submit" value = "Upload file" class = "btn btn-primary">
-</form>
-     </div>
- <div class="profile">
-    <table class="tableProfile table ">
-        <tr>
-            <td>Логін:</td>
-            <td>${userOne.login}</td>
-        </tr>
-        <tr>
-            <td>Прізвище:</td>
-            <td>${userOne.lastName}</td>
-        </tr>
-        <tr>
-            <td>Ім`я:</td>
-            <td>${userOne.firstName}</td>
-        </tr>
-        <tr>
-            <td>Електронна пошта:</td>
-            <td>${userOne.email}</td>
-        </tr>
-    </table>
-     <a href="${pageContext.request.contextPath}/user/${userOne.id}/edit/" style="font-size: 20px; color: aqua; text-decoration: none ">Редагувати профіль</a>
+ 
     
-     </div>
- --%>
+
+   
+
 
 

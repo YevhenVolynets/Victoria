@@ -17,8 +17,6 @@ public interface UserService {
 	
 	UserEntity findUserByEmail(String email);
 	
-	void createFolder(UserEntity user);
-	
 	void updateUser(UserEntity user);
 
 
