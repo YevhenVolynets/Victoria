@@ -41,14 +41,11 @@ public class StatisticsTeamServiceImpl implements StatisticsTeamService {
 			statisticsTeam.setLigue(result.getLigue());
 			
 			int indx =  result.getScoredMissedGoal().indexOf('-');
-			//System.out.println(indx);
-			//System.out.println(result.getScoredMissedGoal());
-			//System.out.println(result.getScoredMissedGoal().substring(0, indx));
-			//System.out.println(result.getScoredMissedGoal().substring(indx+1,result.getScoredMissedGoal().length()));
+		
 			statisticsTeam.setScoredGoal(Integer.parseInt(result.getScoredMissedGoal().substring(0, indx)));
 			statisticsTeam.setMissedGoal(Integer.parseInt(result.getScoredMissedGoal().substring(indx+1,result.getScoredMissedGoal().length())));
 			statisticsTeam.setTeam(team);
-			//System.out.println(statisticsTeam);
+			
 			statisticsTeamRepository.save(statisticsTeam);
 			
 		}

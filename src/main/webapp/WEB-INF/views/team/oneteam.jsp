@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="/WEB-INF/views/taglib.jsp" %>
     <br>
     <br>
    
@@ -63,12 +64,50 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
+<table class="table table-bordered table-responsive" style="font-size: 20px; text-align: center ;">
+<thead>
+      <tr class="active">
+        <th>Номер туру</th>
+        <th>Дата</th>
+        <th>Команда дома</th>
+        <th>Рахунок</th>
+        <th>Команда гості</th>
+        
+
+      </tr>
+    </thead>
+    <tbody>
+<c:forEach  var="game" items="${gameHome}" >
+<tr class="info">
+<td>${game.numberTour }</td>
+<td>${game.dateGame }</td>
+<td>${game.teamHome.nameTeam }</td>
+<td>${game.scoreHome } - ${game.scoreGuest }</td>
+<td>${game.teamGuest.nameTeam }</td>
+
+</tr>
+</c:forEach>
+<c:forEach  var="game" items="${gameGuest}" >
+<tr class="info">
+<td>${game.numberTour }</td>
+<td>${game.dateGame }</td>
+<td>${game.teamHome.nameTeam }</td>
+<td>${game.scoreHome } - ${game.scoreGuest }</td>
+<td>${game.teamGuest.nameTeam }</td>
+
+</tr>
+</c:forEach>
+</tbody>
+</table>
 <br>
 <br>
 <br>
 
-</div>
+
+
+
+<br>
+<br>
+<br>
+
 </div>

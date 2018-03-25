@@ -16,4 +16,8 @@ public interface CalendarService {
 	Calendar findOneCalendar(int id);
 	
 	Calendar findLastMatch(Team team);
+	
+	List<Calendar> findGuestCalendar(Team teamguest);
+	
+	List<Calendar> findHomeCalendar(Team teamhome);
 }

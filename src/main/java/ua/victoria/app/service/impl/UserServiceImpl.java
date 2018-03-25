@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService{
 		userRepository.save(user);
 		File file = CustomFileUtils.createFolder("user_"+user.getId());
 		System.out.println(file);
-		/*sendEmail(token, user);*/
+		sendEmail(token, user);
 	}
 
 	@Override

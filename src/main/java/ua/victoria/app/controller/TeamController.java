@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ua.victoria.app.entity.Team;
+import ua.victoria.app.service.CalendarService;
 import ua.victoria.app.service.TeamService;
 
 @Controller
@@ -21,6 +22,9 @@ public class TeamController {
 	
 	@Autowired
 	private TeamService teamService;
+	
+	@Autowired
+	private CalendarService calendarService;
 	
 	@GetMapping("/add")
 	public String showAddTeamPage(Model model) {
@@ -54,6 +58,8 @@ public class TeamController {
 	public String showOneTeam(@PathVariable("idTeam") int id,Model model) {
 		Team team = teamService.findTeamById(id);
 		model.addAttribute("oneTeam", team);
+		model.addAttribute("gameHome", calendarService.findHomeCalendar(team));
+		model.addAttribute("gameGuest", calendarService.findGuestCalendar(team));
 		return "team/oneteam";
 	}
 	

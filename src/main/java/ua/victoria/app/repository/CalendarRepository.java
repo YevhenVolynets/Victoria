@@ -16,4 +16,10 @@ public interface CalendarRepository  extends JpaRepository<Calendar, Integer>{
 	
 	@Query("SELECT c FROM Calendar c where c.teamHome =:team or c.teamGuest= :team order by c.dateGame DESC")
 	List<Calendar> findLastMatch(@Param("team") Team team); 
+	
+	@Query("SELECT c FROM Calendar c where c.teamHome =:team")
+	List<Calendar> findHomeCalendar(@Param("team") Team team);
+	
+	@Query("SELECT c FROM Calendar c where c.teamGuest =:team")
+	List<Calendar> findGuestCalendar(@Param("team") Team team);
 }
