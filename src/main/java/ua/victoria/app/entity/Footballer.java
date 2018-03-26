@@ -23,7 +23,8 @@ public class Footballer extends BaseEntity{
 	@JoinColumn(name = "id_team")
 	private Team team;
 	
-	@OneToOne(mappedBy = "footballer", fetch = FetchType.LAZY)
+	@OneToOne( fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_Statistics_footballer")
 	private StatisticsFootballer statistics;
 
 

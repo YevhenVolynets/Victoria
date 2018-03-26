@@ -30,6 +30,7 @@ import ua.victoria.app.entity.UserRole;
 import ua.victoria.app.mapper.UserMapper;
 import ua.victoria.app.service.StatisticsTeamService;
 import ua.victoria.app.service.UserService;
+import ua.victoria.app.service.utils.TokenGenerator;
 
 @Controller
 public class BaseController {
@@ -150,6 +151,13 @@ public class BaseController {
 		return "video";
 	}
 	
+	@GetMapping("/victoria-2004")
+	public String showvictoria2004() {
+		
+		
+		return "victoria/victoria-2004";
+	}
+	
 	@GetMapping("/contacts")
 	public String showContact() {
 		
@@ -190,5 +198,47 @@ public class BaseController {
 		return "tmp";
 	}
 
+	@GetMapping("/forgotpass")
+	public String forgotpass(/*Model model*/) {
+		/*String email = null;
+		model.addAttribute("emailModel",email);*/
+		
+		return "tmp";
+	}
+	@PostMapping("/forgotpass")
+	public String forgotpassnewpass(@RequestParam("email") String email) {
+		if(userService.findUserByEmail(email)!=null) {
+			userService.forgotPass(userService.findUserByEmail(email));
+		}
+		
+		
+		return "reditect:/";
+	}
 	
+	@GetMapping("/droppass")
+	public String droppassUser(@RequestParam("token") String token,
+			@RequestParam("userid") String useridStr,
+			Model model) {
+		
+		try {
+			int userId = Integer.valueOf(useridStr);
+			UserEntity entity  = userService.findUserById(userId);
+			
+			if(entity != null) {
+				if(entity.getToken().equals(token)) {
+					entity.setToken("");
+					entity.setPassword("");
+					
+					userService.updateUser(entity);
+					model.addAttribute("newPass", entity);
+				}
+			}
+		}
+		catch (Exception e) {
+			model.addAttribute("error", "Opps..Verify error");
+			return "verify/verify-error";
+		}
+		
+		return "dropPass";
+	}
 }

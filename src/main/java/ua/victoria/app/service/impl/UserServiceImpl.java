@@ -73,7 +73,13 @@ public class UserServiceImpl implements UserService{
 		
 		return userRepository.findUserByEmail(email);
 	}
-
+	@Override
+	public void forgotPass(UserEntity entity){
+		entity.setToken(TokenGenerator.generate());
+		sendEmailIfForgotPass(entity.getToken(),entity);
+	}
+	
+	
 	private void sendEmail(String token,UserEntity entity) {
 		String domain = "http://localhost:8090/";
 		Mail mail = new Mail();
@@ -94,4 +100,17 @@ public class UserServiceImpl implements UserService{
 		
 	}
 	
+	
+	private void sendEmailIfForgotPass(String token,UserEntity entity) {
+		String domain = "http://localhost:8090/";
+		Mail mail = new Mail();
+		mail.setTo(entity.getEmail());
+		mail.setSubject("You forgot password?");
+		mail.setContent("Please drop your pass "
+		+domain
+		+"droppass?token="
+		+token+"&userid="
+		+entity.getId());
+		emailService.sendMessage(mail);
+	}
 }

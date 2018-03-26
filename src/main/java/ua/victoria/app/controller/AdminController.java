@@ -28,6 +28,7 @@ import ua.victoria.app.entity.Position;
 import ua.victoria.app.service.AdminService;
 import ua.victoria.app.service.AmpluaService;
 import ua.victoria.app.service.CalendarService;
+import ua.victoria.app.service.FootballerService;
 import ua.victoria.app.service.TeamService;
 
 @Controller
@@ -46,6 +47,9 @@ public class AdminController {
 	
 	@Autowired
 	private TeamService teamService;
+	
+	@Autowired
+	private FootballerService footballerService;
 	
 	@GetMapping
 	public String getMenu() {
@@ -84,10 +88,13 @@ public class AdminController {
 	@PostMapping("/addPlayer")
 	public String savePlayer(
 			@ModelAttribute("add")  @Valid Footballer footballer,
-			/*@RequestParam("amplua") String pos,*/  BindingResult result) {
+			 BindingResult result) {
+		if(result.hasErrors()) {
+			
+		}else {
+		footballerService.savePlayer(footballer);
+		}
 		
-		System.out.println(footballer);
-		/*System.out.println(pos);*/
 		return "redirect:/admin/addPlayer";
 	}
 	@GetMapping("/addCalendar")

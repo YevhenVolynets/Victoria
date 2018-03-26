@@ -28,7 +28,7 @@
  
  <div  class="text-white panel-heading" style="text-align: center;"> ${lastModel.dateGame } </div>
   
-  <div  class="text-white panel-heading" style="width: 240px;height: 140px; font-size: 90px;font-family: cursive;
+  <div  class="text-white panel-heading" style="width: 240px;height: 140px; font-size: 80px;font-family: cursive;
   margin-top: 60px; text-align: center; color:green;
   border: 4px solid black;border-radius: 10px;
   "> ${lastModel.scoreHome }  - ${lastModel.scoreGuest }</div> 

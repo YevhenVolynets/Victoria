@@ -132,14 +132,14 @@
 									<input type="submit" class="btn btn-sm btn-success"
 										style="margin-left: 25%; width: 50%" value="Login" />
 
-									<div class="text-center"
-										style="margin-bottom: -15px; margin-top: 10px">
-										<a href="" tabindex="5" class="forgot-password"
-											style="margin-bottom: -5px; color: azure">Forgot
-											Password?</a>
-									</div>
+									
 								
 							</form:form>
+							<div class="text-center"
+										style="margin-bottom: -15px; margin-top: 10px">
+										<a href="${rootURL}/forgotpass" >Forgot
+											Password?</a>
+									</div>
 						</div>
 					</div></li>
 				

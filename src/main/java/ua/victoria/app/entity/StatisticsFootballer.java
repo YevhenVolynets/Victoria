@@ -6,8 +6,7 @@ import javax.persistence.*;
 @Table(name = "statistics_footballer")
 public class StatisticsFootballer extends BaseEntity {
 
-@OneToOne(fetch =  FetchType.LAZY)
-@JoinColumn(name = "id_footballer")
+@OneToOne(mappedBy = "statistics",fetch =  FetchType.LAZY)
 private Footballer footballer;
 
 @Column(name= "count_match")
