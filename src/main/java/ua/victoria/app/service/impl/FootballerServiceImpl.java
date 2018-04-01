@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.victoria.app.entity.Footballer;
+import ua.victoria.app.entity.Team;
 import ua.victoria.app.repository.FootballerRepository;
 import ua.victoria.app.service.FootballerService;
 
@@ -31,6 +32,12 @@ public class FootballerServiceImpl implements FootballerService{
 	public List<Footballer> findAll() {
 	
 		return footballerRepository.findAll();
+	}
+
+	@Override
+	public List<Footballer> findPlayerByIdTeamAndSortByNumberShirt(Team team) {
+		
+		return footballerRepository.findPlayerByIdTeamAndSortByNumberShirt(team);
 	}
 
 }

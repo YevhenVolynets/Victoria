@@ -17,6 +17,9 @@ action="${pageContext.request.contextPath}/admin/addPlayer"
 			<form:options  items="${ampluaList}" itemLabel="amplua.val" />
 </form:select>
 
+  <p class="text-white"> Команда:</p> <form:select path="team">
+			<form:options  items="${teamModel}" itemLabel="nameTeam"  itemValue="id" />
+</form:select>  
 <input type="submit" value="Відправити"/>
 
 </form:form>

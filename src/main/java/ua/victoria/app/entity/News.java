@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +26,10 @@ public class News extends BaseEntity{
 	
 	@Column(name="path_to_foto")
 	private String pathToFoto;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_author")
+	private UserEntity author;
 
 	public News() {
 
@@ -59,6 +65,22 @@ public class News extends BaseEntity{
 
 	public void setPathToFoto(String pathToFoto) {
 		this.pathToFoto = pathToFoto;
+	}
+	
+	
+
+	public UserEntity getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(UserEntity author) {
+		this.author = author;
+	}
+
+	@Override
+	public String toString() {
+		return "News [title=" + title + ", contents=" + contents + ", createDate=" + createDate + ", pathToFoto="
+				+ pathToFoto + "]";
 	}
 	
 	

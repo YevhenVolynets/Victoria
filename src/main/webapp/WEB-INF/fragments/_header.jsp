@@ -44,11 +44,11 @@
 				class="dropdown-toggle" data-toggle="dropdown">МАТЧІ <b
 					class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="${pageContext.request.contextPath}/statistics/lastMatch">Останній матч</a></li>
+					<li><a href="${pageContext.request.contextPath}/statistics/team/20/lastMatch">Останній матч</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/statistics/tournament-table">Турнірна
 							таблиця</a></li>
-					<li><a href="#">Статистика гравців</a></li>
+					<li><a href="${pageContext.request.contextPath}/statistics/team/20/footballer">Статистика гравців</a></li>
 				</ul></li>
 
 			<li class="dropdown headerText"><a href="#"

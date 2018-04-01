@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ua.victoria.app.entity.News;
 import ua.victoria.app.repository.NewsRepository;
 import ua.victoria.app.service.AdminService;
+import ua.victoria.app.service.utils.CustomFileUtils;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -17,15 +18,8 @@ public class AdminServiceImpl implements AdminService{
 	private NewsRepository newsRepository;
 	
 	@Override
-	public void createFolder() {
-		 File file = new File("D:\\tmp\\admin");
-	        if (!file.exists()) {
-	            if (file.mkdir()) {
-	                System.out.println("Directory is created!");
-	            } else {
-	                System.out.println("Failed to create directory!");
-	            }
-	        }
+	public void createFolder(String foldername) {
+		 CustomFileUtils.createFolder(foldername);
 	}
 
 	@Override

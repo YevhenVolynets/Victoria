@@ -63,5 +63,28 @@ public static String getImage(UserEntity user) throws IOException {
 		
 		return encodedFile;
 	}
+
+public static String getImage(String  pathfoto) throws IOException {
+	File file = null;
+	byte[] encodeFileToByte = null;
+	String encodedFile = null;
+	String defaultPath = ROOT_PATH + SEPARATOR + "default_news.png";
+	String img = ROOT_PATH+SEPARATOR+pathfoto;
+	
+	if (new File(img).exists()) {
+		file = new File(img);
+		
+		if(!file.exists()) { 
+			file = new File(defaultPath); 
+		}
+	} else {
+		file = new File(defaultPath);
+	}
+	
+	encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
+	encodedFile = new String(encodeFileToByte);
+	
+	return encodedFile;
+}
 	
 }

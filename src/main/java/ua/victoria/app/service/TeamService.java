@@ -2,6 +2,7 @@ package ua.victoria.app.service;
 
 import java.util.List;
 
+import ua.victoria.app.entity.Footballer;
 import ua.victoria.app.entity.Team;
 
 public interface TeamService {
@@ -15,5 +16,6 @@ public interface TeamService {
 	Team findTeamByNameTeam(String nameTeam);
 	
 	void saveTeamWithTable();
-
+	
+	
 }

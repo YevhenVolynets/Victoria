@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="..\taglib.jsp" %>
+<%@ include file="/WEB-INF/views/taglib.jsp" %>
 
 <form:form action="${pageContext.request.contextPath}/admin/saveCalendar" method="POST" modelAttribute="oneModel" cssStyle="margin-top:40px" >
 <form:hidden path="id"/>

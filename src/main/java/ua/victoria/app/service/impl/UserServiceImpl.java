@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void forgotPass(UserEntity entity){
 		entity.setToken(TokenGenerator.generate());
+		userRepository.save(entity);
 		sendEmailIfForgotPass(entity.getToken(),entity);
 	}
 	
@@ -112,5 +113,15 @@ public class UserServiceImpl implements UserService{
 		+token+"&userid="
 		+entity.getId());
 		emailService.sendMessage(mail);
+	}
+	
+	@Override
+	public void updateAfterForgot(UserEntity user) {
+		String password = user.getPassword();
+		System.out.println("OLD:"+password);
+		user.setPassword(passwordEncoder.encode(password));
+		System.out.println("NEW:"+user.getPassword());
+		user.setToken("");
+		userRepository.save(user);
 	}
 }

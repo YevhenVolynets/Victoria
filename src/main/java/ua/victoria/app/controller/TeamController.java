@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ua.victoria.app.entity.Team;
 import ua.victoria.app.service.CalendarService;
 import ua.victoria.app.service.TeamService;
 
 @Controller
+@SessionAttributes("userModelka")
 @RequestMapping("/team")
 public class TeamController {
 	

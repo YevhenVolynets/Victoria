@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="..\taglib.jsp" %>
+   <%@ include file="/WEB-INF/views/taglib.jsp" %>
 <br>
 <br>
 <br>
@@ -8,6 +8,7 @@
 <a href="${rootURL}/admin/addNews">Додати новину</a><br><br>
 <a href="${rootURL}/admin/addPhoto">Додати фото</a><br><br>
 <a href="${rootURL}/admin/addPlayer">Додати гравця</a><br><br>
+<a href="${rootURL}/admin/player/addStatistics">Додати статистику гравця</a><br><br>
 <a href="${rootURL}/parser/addCoach">Парсинг тренера</a><br><br>
 <a href="${rootURL}/parser/addTablePremierLigue">Парсинг таблиці результатів першої ліги</a><br><br>
 <a href="${rootURL}/parser/addTableSecondLigue">Парсинг таблиці результатів другої ліги</a><br><br>

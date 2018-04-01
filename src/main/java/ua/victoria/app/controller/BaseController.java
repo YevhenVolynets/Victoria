@@ -21,9 +21,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import ua.victoria.app.domain.ForgotRequest;
 import ua.victoria.app.domain.RegisterRequest;
 import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.entity.UserRole;
@@ -33,6 +34,7 @@ import ua.victoria.app.service.UserService;
 import ua.victoria.app.service.utils.TokenGenerator;
 
 @Controller
+@SessionAttributes("newPass")
 public class BaseController {
 	
 	
@@ -44,7 +46,7 @@ public class BaseController {
 	/*@GetMapping("/")
 	public String showHome() {
 		
-		return "home";
+		return "home"; 
 	}*/
 	
 	@GetMapping("/")
@@ -77,6 +79,7 @@ public class BaseController {
 		if(result.hasErrors()){
 			return new ModelAndView("register");
 		}
+		
 		try {
 		userService.saveUser(UserMapper.registerToEntity(request));
 		}catch (Exception e) {
@@ -131,7 +134,7 @@ public class BaseController {
 	@GetMapping("/social")
 	public String showSocial() {
 		
-		
+		 
 		return "social";
 	}
 	
@@ -199,20 +202,20 @@ public class BaseController {
 	}
 
 	@GetMapping("/forgotpass")
-	public String forgotpass(/*Model model*/) {
-		/*String email = null;
-		model.addAttribute("emailModel",email);*/
+	public String forgotpass() {
 		
-		return "tmp";
+		
+		return "forgotpass";
 	}
 	@PostMapping("/forgotpass")
 	public String forgotpassnewpass(@RequestParam("email") String email) {
 		if(userService.findUserByEmail(email)!=null) {
 			userService.forgotPass(userService.findUserByEmail(email));
+		
 		}
 		
 		
-		return "reditect:/";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/droppass")
@@ -224,14 +227,11 @@ public class BaseController {
 			int userId = Integer.valueOf(useridStr);
 			UserEntity entity  = userService.findUserById(userId);
 			
-			if(entity != null) {
-				if(entity.getToken().equals(token)) {
-					entity.setToken("");
-					entity.setPassword("");
-					
-					userService.updateUser(entity);
-					model.addAttribute("newPass", entity);
-				}
+			ForgotRequest request = UserMapper.entityToForgotRequest(entity);
+			
+			if(request.getToken().equals(token)) {
+					model.addAttribute("newPass", request);
+					return "dropPass";
 			}
 		}
 		catch (Exception e) {
@@ -239,6 +239,22 @@ public class BaseController {
 			return "verify/verify-error";
 		}
 		
-		return "dropPass";
+		return "tmp";
+		
+	} 
+	@PostMapping("/droppass")
+	public String  saveNewEditUser(@Valid @ModelAttribute("newPass") ForgotRequest request,BindingResult result) {
+		
+		System.out.println(result.getAllErrors());
+		if(result.hasErrors()){
+			return "tmp";
+		}
+		UserEntity entity;
+		if(request != null && request.getPassword()!= null) {
+			entity = userService.findUserByEmail(request.getEmail());
+			entity.setPassword(request.getPassword());
+			userService.updateAfterForgot(entity);
+		}
+		return "redirect:/";
 	}
 }

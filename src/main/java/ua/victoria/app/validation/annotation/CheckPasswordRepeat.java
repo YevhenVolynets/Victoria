@@ -9,11 +9,12 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+import ua.victoria.app.validation.validator.CheckPasswordForgotValidator;
 import ua.victoria.app.validation.validator.CheckPasswordValidator;
 
 @Retention(RUNTIME)
 @Target(value=ElementType.TYPE)
-@Constraint(validatedBy = CheckPasswordValidator.class)
+@Constraint(validatedBy = {CheckPasswordValidator.class, CheckPasswordForgotValidator.class})
 public @interface CheckPasswordRepeat {
 
 	String message() default "Entered passwords not match";

@@ -14,10 +14,10 @@
 										<form:password cssClass="form-control" placeholder=" Password"
 											path="password"/>
 									</div>
-									<%-- <div class="form-group">
+									 <div class="form-group">
 										<form:password cssClass="form-control" placeholder=" Confirm Password"
 											path="passwordConfirmation"/>
-									</div> --%>
+									</div> 
 
 									<input type="submit" class="btn btn-sm btn-success"
 										style="margin-left: 25%; width: 50%" value="Register now" />

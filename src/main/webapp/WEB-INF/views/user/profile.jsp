@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="..\taglib.jsp" %>
+<%@ include file="/WEB-INF/views/taglib.jsp" %>
     <style>
          .navbar {
             margin-bottom: 0;
@@ -136,6 +136,9 @@
        
 
     </style>
+    
+    
+    
 	<div class="row" style="display:flex; justify-content: center;">
         
        <div class="col-md-10 " style="margin-top:50px; ">
@@ -149,11 +152,11 @@
         
             <div class="box-body">
                      <div class="col-sm-6">
-                     <div  align="center"> <img alt="User Pic" src="data:img/png; base64, ${img}" id="profile-image1" class="img-circle img-responsive"> 
+                     <div  align="center"> <img alt="User Pic" onclick="showHidden()" src="data:img/png; base64, ${img}" id="profile-image1" class="img-circle img-responsive"> 
                 <form:form action="${pageContext.request.contextPath}/user/edit/img" method="POST" 
 enctype="multipart/form-data">
                 <input id="profile-image-upload" class="hidden" type="file" name="fileUpload">
-                <input type="submit" value = "Upload file" class = "btn btn-primary">
+                <input type="submit" style="display: none" value = "Upload file" class = "btn btn-primary" id="fotosubmit">
                 </form:form>
 <div style="color:#999;" >click here to change profile image</div>
                
@@ -187,12 +190,12 @@ enctype="multipart/form-data">
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Рік Народження:</div><div class="col-sm-6">${user.userDetail.birthday}</div>
+<div class="col-sm-6 col-xs-6 tital " >Рік Народження:</div><div class="col-sm-6">${user.userDetail.birthday.month+1}</div>
 
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Дата народження:</div><div class="col-sm-6">${user.userDetail.birthday}</div>
+<div class="col-sm-6 col-xs-6 tital " >Дата народження:</div><div class="col-sm-6">${user.userDetail.birthday.date}</div>
 
   <div class="clearfix"></div>
 <div class="bot-border"></div>
@@ -230,7 +233,10 @@ enctype="multipart/form-data">
     $('#profile-image1').on('click', function() {
         $('#profile-image-upload').click();
     });
-});       
+});    
+              function showHidden() {
+            	  document.getElementById("fotosubmit").style.display = "";
+			}
               </script> 
        
        

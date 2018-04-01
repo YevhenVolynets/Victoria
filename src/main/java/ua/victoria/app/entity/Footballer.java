@@ -90,8 +90,10 @@ public class Footballer extends BaseEntity{
 	@Override
 	public String toString() {
 		return "Footballer [firstName=" + firstName + ", lastName=" + lastName + ", numberShirt=" + numberShirt
-				+ ", amplua=" + amplua + ", team=" + team + ", statistics=" + statistics + ", getId()=" + getId() + "]";
+				+ ", amplua=" + amplua + ", team=" + team + "]";
 	}
+
+	
 	
 	
 }

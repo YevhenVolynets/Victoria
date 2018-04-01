@@ -69,7 +69,7 @@ public class UserController {
 			 entity.setUserDetail(userDetail);
 			 userDetailService.saveUserDetail(userDetail);
 		}
-		System.out.println(CustomFileUtils.getImage(entity));
+		
 		/*entity.getUserDetail().setImagePath(CustomFileUtils.getImage(entity));*/
 		
 		/*userService.updateUser(entity);*/
@@ -202,19 +202,7 @@ public class UserController {
 		
 		return "redirect:/user/profile";
 	}
-	/*@PostMapping("/login")
-	public String loginInSystem(
-			@RequestParam("login") String login,
-			@RequestParam("password") String password) {
-		System.out.println(login);
-		System.out.println(password);
-		UserEntity user = userService.findUserByLogin(login);
-		if (user.getPassword().equals(password)) {
-			return "redirect:/user/"+user.getId()+"/detail";
-		}
-		else return "redirect:/";
-		
-	}*/
+	
 
 
 }

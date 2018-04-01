@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ua.victoria.app.entity.Footballer;
 import ua.victoria.app.entity.ParserTableResult;
 import ua.victoria.app.entity.Team;
 import ua.victoria.app.repository.ParserTableResultRepository;
@@ -63,5 +64,7 @@ public class TeamServiceImpl implements TeamService{
 			teamRepository.save(team);
 		}
 	}
+
+
 
 }

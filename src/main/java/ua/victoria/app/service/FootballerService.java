@@ -3,6 +3,7 @@ package ua.victoria.app.service;
 import java.util.List;
 
 import ua.victoria.app.entity.Footballer;
+import ua.victoria.app.entity.Team;
 
 public interface FootballerService {
 
@@ -11,4 +12,6 @@ public interface FootballerService {
 	Footballer findByIdPlayer(int id);
 	
 	List<Footballer> findAll();
+	
+	List<Footballer> findPlayerByIdTeamAndSortByNumberShirt(Team team);
 }

@@ -4,7 +4,7 @@ import ua.victoria.app.entity.News;
 
 public interface AdminService {
 	
-	void createFolder();
+	void createFolder(String foldername);
 	
 	void save(News news);
 

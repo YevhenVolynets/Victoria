@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="..\taglib.jsp" %>
+<%@ include file="/WEB-INF/views/taglib.jsp" %>
 <br><br><br><br>
    <div class="btn btn-default">
    <a href="${rootURL}/admin/calendar/add">Додати</a>

@@ -20,5 +20,7 @@ public interface UserService {
 	void updateUser(UserEntity user);
 
 	void forgotPass(UserEntity entity);
+	
+	void updateAfterForgot(UserEntity user);
 
 }

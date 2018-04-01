@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ua.victoria.app.entity.Calendar;
 import ua.victoria.app.entity.Ligue;
@@ -16,6 +18,7 @@ import ua.victoria.app.service.StatisticsTeamService;
 import ua.victoria.app.service.TeamService;
 
 @Controller
+@SessionAttributes("userModelka")
 @RequestMapping("/statistics")
 public class StatisticsTeamController {
 	
@@ -42,10 +45,9 @@ public class StatisticsTeamController {
 		return "statistics/team/statisticsTable";
 	}
 	
-	@GetMapping("/lastMatch")
-	public String showLastMatches(Model model) {
-		String nameTeam = "\"Вікторія\" 2004 Л.";
-		Team team = teamService.findTeamByNameTeam(nameTeam);
+	@GetMapping("/team/{id}/lastMatch")
+	public String showLastMatches(@PathVariable("id") String id,Model model) {
+		Team team = teamService.findTeamById(Integer.parseInt(id));
 		model.addAttribute("lastModel",calendarService.findLastMatch(team));
 		
 		return "statistics/lastMatch";/**/

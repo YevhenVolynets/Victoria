@@ -3,15 +3,20 @@
     <%@ include file="/WEB-INF/views/taglib.jsp" %>
     <br><br>
     <br>
+    <div class="panel panel-default">
+  <div class="panel-heading" style="display:flex; align-content: space-between;justify-content: center;">  <h4>Редагування профілю</h4> </div>
+   <div class="panel-body" style="display:flex; align-content: space-between;justify-content: center;">
     <form:form action="${pageContext.request.contextPath}/user/saveuser" modelAttribute="userEdit" method="POST">
-    <form:input path="userDetail.firstName" placeholder="Ім`я"/>
-    <form:input path="userDetail.lastName"  placeholder="Прізвище"/>
-    <form:input path="userDetail.age"  placeholder="Вік"/>
-    <form:input path="userDetail.city"  placeholder="Місто"/>
-    <input type="date" name="birthday"/>
-    <form:input path="userDetail.webSite"  placeholder="Веб-сайт" />
-    <form:input path="userDetail.phone"  placeholder="Телефон"/>
-    <form:input path="userDetail.hobby" placeholder="Хоббі"/>
-    <form:radiobuttons path="userDetail.gender" items="${sex}" itemLabel="val"/>
-    <input type="submit" value="send"/>
+   <div class="col-sm-5 col-xs-6 tital " align="right" >Ім`я:</div><div class="col-sm-6 col-xs-6 "> <form:input path="userDetail.firstName" placeholder="Ім`я"/></div>
+   <div class="col-sm-5 col-xs-6 tital " align="right">Прізвище:</div> <div class="col-sm-6 col-xs-6 "><form:input path="userDetail.lastName"  placeholder="Прізвище"/></div>
+  <div class="col-sm-5 col-xs-6 tital " align="right">Вік:</div> <div class="col-sm-6 col-xs-6 "> <form:input path="userDetail.age"  placeholder="Вік"/></div>
+  <div class="col-sm-5 col-xs-6 tital " align="right">Місто</div> <div class="col-sm-6 col-xs-6 "> <form:input path="userDetail.city"  placeholder="Місто"/></div>
+  <div class="col-sm-5 col-xs-6 tital " align="right">День народження:</div> <div class="col-sm-6 col-xs-6 "> <input type="date" name="birthday"/></div>
+  <div class="col-sm-5 col-xs-6 tital " align="right">Сайт:</div> <div class="col-sm-6 col-xs-6 "> <form:input path="userDetail.webSite"  placeholder="Веб-сайт" /></div>
+  <div class="col-sm-5 col-xs-6 tital " align="right">Телефон:</div> <div class="col-sm-6 col-xs-6 "> <form:input path="userDetail.phone"  placeholder="Телефон"/></div>
+  <div class="col-sm-5 col-xs-6 tital " align="right">Хоббі:</div> <div class="col-sm-6 col-xs-6 "> <form:input path="userDetail.hobby" placeholder="Хоббі"/></div>
+  <div class="col-sm-5 col-xs-6 tital " align="right">Стать:</div> <div class="col-sm-6 col-xs-6 "> <form:radiobuttons path="userDetail.gender" items="${sex}" itemLabel="val"/></div>
+    <div class="col-sm-5 col-xs-6 "> </div> <div class="col-sm-2 col-xs-6   " > <input type="submit" value="send" class="btn btn-info"/></div>
     </form:form>
+    </div>
+    </div>

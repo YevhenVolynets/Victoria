@@ -106,6 +106,7 @@ width:100%;
     padding: 2em;
     border-radius: 3px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: white;
 }
 
 .card-title {
@@ -147,9 +148,10 @@ width:100%;
         <div class="card">
         <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
           <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+                <h4 class="card-title">Івашкевич Василь</h4>
+                <p class="card-text">Головний тренер</p>
+                <p class="card-text">+38 (093) 126 47 60</p>
+                <a href="#" class="btn btn-primary">Більше</a>
             </div>
          </div>
      </div><!-- End card 1 -->
@@ -158,8 +160,8 @@ width:100%;
         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           <div class="card-block">
                 <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+                <p class="card-text">Голова батьківського комітету</p>
+               <p class="card-text">+38 (093) 126 47 60</p>
             </div>
          </div>
      </div><!-- End card 2 -->
@@ -167,14 +169,15 @@ width:100%;
         <div class="card">
         <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
           <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+                <h4 class="card-title">Волинець Євген</h4>
+                <p class="card-text">Помічник тренера</p>
+                <p class="card-text">+38 (093) 126 47 60</p>
+                <a href="#" class="btn btn-primary">Більше</a>
             </div>
          </div>
      </div><!-- End card 3 -->
 </div>
 </section>
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4325.0594878884385!2d24.03686515977309!3d49.866959448643506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473adcfee5d005ef%3A0xfa580df0c2b27483!2z0KjQutC-0LvQsCDihJYgNTQ!5e0!3m2!1suk!2sua!4v1521331634459" width="90%" height="450" frameborder="2" style="border:5; margin-left: 5%; border-radius: 10%" allowfullscreen></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4325.0594878884385!2d24.03686515977309!3d49.866959448643506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473adcfee5d005ef%3A0xfa580df0c2b27483!2z0KjQutC-0LvQsCDihJYgNTQ!5e0!3m2!1suk!2sua!4v1521331634459" width="90%" height="450" frameborder="2" style="border:5; margin-left: 5%; border-radius: 1%" allowfullscreen></iframe>
 

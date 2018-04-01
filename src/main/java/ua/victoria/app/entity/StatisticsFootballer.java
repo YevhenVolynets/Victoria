@@ -85,6 +85,12 @@ public void setCountRedCard(int countRedCard) {
 	this.countRedCard = countRedCard;
 }
 
+@Override
+public String toString() {
+	return "StatisticsFootballer [countMatch=" + countMatch + ", goal=" + goal + ", assistPass=" + assistPass
+			+ ", countYellowCard=" + countYellowCard + ", countRedCard=" + countRedCard + "]";
+}
+
 
 
 }
