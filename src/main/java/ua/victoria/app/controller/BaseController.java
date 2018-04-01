@@ -68,7 +68,7 @@ public class BaseController {
 		model.addAttribute("userModelka", new RegisterRequest());
 		model.addAttribute("userRoless",UserRole.values());
 		model.addAttribute("listStat2", statisticsTeamService.findSecondLigue());
-		
+		model.addAttribute("title", "FC - VICTORIA");
 		return "home";
 	}
 	
@@ -110,7 +110,7 @@ public class BaseController {
 			model.addAttribute("error", "Opps..Verify error");
 			return "verify/verify-error";
 		}
-		
+		model.addAttribute("title", "Верифікація аккаунту");
 		return "verify/verify-success";
 	}
 	
@@ -132,79 +132,81 @@ public class BaseController {
 	
 	
 	@GetMapping("/social")
-	public String showSocial() {
+	public String showSocial(Model model) {
 		
-		 
+		model.addAttribute("title", "Cоціальні мережі");
 		return "social";
 	}
 	
 	@GetMapping("/photos")
-	public String showPhoto() {
+	public String showPhoto(Model model) {
 		
-		
+		model.addAttribute("title", "Фото");
 		return "photo";
 	}
 	
 	@GetMapping("/video")
 	public String showVideo(Model model) {
-		String aa="width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Kf5MkitxNk4\" frameborder=\"1\" allow=\"autoplay; encrypted-media\" allowfullscreen";
+		String video="width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Kf5MkitxNk4\" frameborder=\"1\" allow=\"autoplay; encrypted-media\" allowfullscreen";
 
-		model.addAttribute("aa", aa);
-		
+		model.addAttribute("aa", video);
+		model.addAttribute("title", "Відео");
 		return "video";
 	}
 	
 	@GetMapping("/victoria-2004")
-	public String showvictoria2004() {
+	public String showvictoria2004(Model model) {
 		
-		
+		model.addAttribute("title", "FC - VICTORIA 2004");
 		return "victoria/victoria-2004";
 	}
 	
 	@GetMapping("/contacts")
-	public String showContact() {
+	public String showContact(Model model) {
 		
-		
+		model.addAttribute("title", "Контакти");
 		return "club/contacts";
 	}
 	
 	@GetMapping("/leadership")
-	public String showLeadership() {
+	public String showLeadership(Model model) {
 		
-		
+		model.addAttribute("title", "Керівництво");
 		return "club/leadership";
 	}
 	
 	@GetMapping("/symbols")
-	public String showSymbols() {
+	public String showSymbols(Model model) {
 		
-		
+		model.addAttribute("title", "Символіка");
 		return "club/symbols";
 	}
 	
 	@GetMapping("/history")
-	public String showHistory() {
+	public String showHistory(Model model) {
 		
-		
+		model.addAttribute("title", "Історія");
 		return "club/history";
 	}
 	
 	@GetMapping("/shop")
-	public String showMagazine() {
+	public String showMagazine(Model model) {
 		
+		model.addAttribute("title", "Магазин");
 		return "tmp";
 	}
 	
 	@GetMapping("/victoria-2009")
-	public String showVictoria2009() {
+	public String showVictoria2009(Model model) {
 		
+		model.addAttribute("title", "FC - VICTORIA 2009");
 		return "tmp";
 	}
 
 	@GetMapping("/forgotpass")
-	public String forgotpass() {
+	public String forgotpass(Model model) {
 		
-		
+		model.addAttribute("title", "Відновлення паролю");
 		return "forgotpass";
 	}
 	@PostMapping("/forgotpass")
@@ -239,6 +241,7 @@ public class BaseController {
 			return "verify/verify-error";
 		}
 		
+		model.addAttribute("title", "Скинення паролю");
 		return "tmp";
 		
 	} 

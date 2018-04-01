@@ -91,13 +91,13 @@ public class UserController {
 			model.addAttribute("imageFromDisk",encodeFileBase64);
 		} */
 		
-		
+		model.addAttribute("title",entity.getUserDetail().getFirstName() +" "+ entity.getUserDetail().getLastName());
 		model.addAttribute("user", entity);
 		return "user/profile";
 	}
 	
 
-	@GetMapping("/{userId}/detail")
+	/*@GetMapping("/{userId}/detail")
 	public String showUser(@PathVariable("userId") int userId, Model model) throws IOException {
 		
 		String fileName = "D:/tmp/"+userId+"/logo.png";
@@ -120,42 +120,42 @@ public class UserController {
 		model.addAttribute("userOne",user1);
 		System.out.println(user1);
 		return "user/detail";
-	}
+	}*/
 	
-	@PostMapping("/{userId}/edit")
+	/*@PostMapping("/{userId}/edit")
 	public String saveEditUser(
 			@PathVariable("userId") int userId,
 			@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName,
 			@RequestParam("phone") String phone) {
-		/*System.out.println(user);
-		System.out.println(result);*/
+		System.out.println(user);
+		System.out.println(result);
 		UserEntity user =userService.findUserById(userId);
-		/*UserDetail userDetail = new UserDetail();*/
+		UserDetail userDetail = new UserDetail();
 		
-		/*userDetail.setFirstName(firstName);
+		userDetail.setFirstName(firstName);
 		userDetail.setLastName(lastName);
 		userDetail.setPhone(phone);
-		*/
+		
 		userService.saveUser(user);
 		
 		return "redirect:/user/"+user.getId()+"/detail";
-	}
+	}*/
 	
 	
-	@PostMapping("/add")
+	/*@PostMapping("/add")
 	public String saveUser(@ModelAttribute("userModel") @Valid UserEntity user, BindingResult result ) {
 		if(result.hasErrors()) {
 			return "user/add";
 		}
 		userService.saveUser(user);
 		return "redirect:/";
-	}
+	}*/
 	
 	
 	
-	@GetMapping("/edit")/*{userId}*/
-	public String editUser(/*@PathVariable("userId") int userId,*/ Model model,Principal principal ) {
+	@GetMapping("/edit")
+	public String editUser(Model model,Principal principal ) {
 		
 		UserEntity userEntity =userService.findUserByEmail(principal.getName());
 		
@@ -164,7 +164,7 @@ public class UserController {
 		list.add(Gender.MAN);list.add(Gender.WONAN);
 		model.addAttribute("sex", list);
 		model.addAttribute("userEdit",userEntity);
-		
+		model.addAttribute("title","Редагування профілю");
 		return "user/edit";
 	} 
 	

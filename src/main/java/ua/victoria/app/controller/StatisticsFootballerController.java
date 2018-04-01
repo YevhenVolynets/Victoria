@@ -26,6 +26,7 @@ public class StatisticsFootballerController {
 		Team team = teamService.findTeamById(Integer.parseInt(id)); 
 	
 		model.addAttribute("oneteamModel",footballerService.findPlayerByIdTeamAndSortByNumberShirt(team));
+		model.addAttribute("title", "Cтастика футболістів" + team.getNameTeam());
 		return "statistics/footballer/showStatistics";
 	}
 

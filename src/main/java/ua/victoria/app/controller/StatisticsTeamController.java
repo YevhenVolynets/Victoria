@@ -39,7 +39,7 @@ public class StatisticsTeamController {
 		
 		model.addAttribute("listStat1",statisticsTeamService.findPremierLigue());
 		model.addAttribute("listStat2", statisticsTeamService.findSecondLigue());
-		
+		model.addAttribute("title", "Турнірна таблиця");
 		
 		
 		return "statistics/team/statisticsTable";
@@ -49,7 +49,7 @@ public class StatisticsTeamController {
 	public String showLastMatches(@PathVariable("id") String id,Model model) {
 		Team team = teamService.findTeamById(Integer.parseInt(id));
 		model.addAttribute("lastModel",calendarService.findLastMatch(team));
-		
+		model.addAttribute("title", "Останній матч " + team.getNameTeam());
 		return "statistics/lastMatch";/**/
 	}
 }

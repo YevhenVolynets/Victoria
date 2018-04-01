@@ -75,8 +75,8 @@ public class AdminController {
 	private UserService userService;
 	
 	@GetMapping
-	public String getMenu() {
-		
+	public String getMenu(Model model) {
+		model.addAttribute("title","Адмін панель");
 		return "admin/main";
 	}
 	
@@ -84,7 +84,7 @@ public class AdminController {
 	public String addNews(Model model) {
 		adminService.createFolder("news");
 		model.addAttribute("news", new News());
-		
+		model.addAttribute("title", "Додавання новини");
 		return "admin/addNews";
 	}
 	
@@ -122,6 +122,7 @@ public class AdminController {
 		model.addAttribute("teamModel", teamService.findAllTeams());
 		model.addAttribute("ampluaList", ampluaService.findAllAmplua());
 		System.out.println("get");
+		model.addAttribute("title", "Додавання футболіста");
 		return "admin/addPlayer";
 	}
 	
@@ -139,17 +140,17 @@ public class AdminController {
 		return "redirect:/admin/addPlayer";
 	}
 	@GetMapping("/addCalendar")
-	public String saveCalendar() {
+	public String saveCalendar(Model model) {
 		
 		calendarService.workWithPars();
-		
+		model.addAttribute("title", "Парсинг календаря");
 		return "redirect:/admin/";
 	}
 	
 	@GetMapping("/editCalendar")
 	public String editCalendar(Model model){
 		model.addAttribute("calendarListModel",calendarService.findAllCalendar());
-		
+		model.addAttribute("title", "Редагування календаря");
 		return "calendar/edit";
 	}
 	
@@ -159,6 +160,7 @@ public class AdminController {
 		List<Ligue> list = new ArrayList<>();
 		list.add(Ligue.First);list.add(Ligue.Second);
 		model.addAttribute("ligueList",list );
+		model.addAttribute("title", "Редагування календаря");
 		return "calendar/editone";
 	}
 	
@@ -195,6 +197,7 @@ public class AdminController {
 		model.addAttribute("calendarModel", new Calendar());
 		model.addAttribute("ligueList",list);
 		model.addAttribute("teamsModel",teamService.findAllTeams());
+		model.addAttribute("title", "Додавання до календаря");
 		return "calendar/add";
 	}
 	
@@ -223,18 +226,21 @@ public class AdminController {
 		model.addAttribute("teamssModel",teamService.findAllTeams());
 		model.addAttribute("footballerModel", footballerService.findAll());
 		/*Team team = teamService.findTeamById(20);*/
+		model.addAttribute("title", "Додавання статистики футболіста");
 		return "statistics/footballer/addStatFootballer";
 	}
 	  
 	@GetMapping("/addStatisticsPlayer")
 	public String showPlayer(@RequestParam("team") String id,Model model) {
 		model.addAttribute("listPlayer", teamService.findTeamById(Integer.parseInt(id)).getFootballers());
+		model.addAttribute("title", "Додавання статистики футболіста");
 		return "statistics/footballer/editFootballers";
 	}
 	
 	@GetMapping("/footballer/statistics/edit")
 	public String showEditOnePlayer(@RequestParam("id") int id,Model model) {
 		model.addAttribute("onePlayer",footballerService.findByIdPlayer(id));
+		model.addAttribute("title", "Редагування статистики футболіста");
 		return "statistics/footballer/editOne";
 	}
 	

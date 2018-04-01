@@ -38,7 +38,7 @@ public class NewsController {
 			news.setPathToFoto(CustomFileUtils.getImage("news"+CustomFileUtils.SEPARATOR+oldPathfoto+".png"));
 		}
 		model.addAttribute("allNews", list);
-	
+		model.addAttribute("title", "Новини");
 		return "news/allnews";
 	}  
 
@@ -77,6 +77,7 @@ public class NewsController {
 		post.setPathToFoto(CustomFileUtils.getImage("news"+CustomFileUtils.SEPARATOR+oldPathfoto+".png"));
 		
 		model.addAttribute("post", post);
+		model.addAttribute("title", post.getTitle());
 		return "news/post";
 	}
 }

@@ -27,12 +27,7 @@ public class TeamController {
 	
 	@Autowired
 	private CalendarService calendarService;
-	
-	@GetMapping("/add")
-	public String showAddTeamPage(Model model) {
-		model.addAttribute("teamModel", new Team());
-		return "team/add";
-	}
+
 	
 	@GetMapping("/list")
 	public String showAllTeam() {
@@ -40,21 +35,11 @@ public class TeamController {
 		return "team/list";
 	}
 	
-	@PostMapping("/add")
-	public String saveTeam(@ModelAttribute("teamModel")
-					 @Valid Team team, BindingResult result
-			) {
-		if(result.hasErrors()) {
-			return "team/add";
-		}
-		teamService.saveTeam(team);
-		return "redirect:/team/list";
-	}
-	@GetMapping("/addpars")
+	/*@GetMapping("/addpars")
 	public String writeTeam() {
 		teamService.saveTeamWithTable();
 		return "redirect:/";
-	}
+	}*/
 	
 	@GetMapping("/{idTeam}")
 	public String showOneTeam(@PathVariable("idTeam") int id,Model model) {
@@ -62,6 +47,7 @@ public class TeamController {
 		model.addAttribute("oneTeam", team);
 		model.addAttribute("gameHome", calendarService.findHomeCalendar(team));
 		model.addAttribute("gameGuest", calendarService.findGuestCalendar(team));
+		model.addAttribute("title",team.getNameTeam());
 		return "team/oneteam";
 	}
 	

@@ -7,7 +7,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+
+<c:choose>
+	<c:when test="${title == null}">
+		<tiles:putAttribute name="title" value="App title" />
+	</c:when>
+	<c:otherwise>
+		<tiles:putAttribute name="title" value="${title}" />
+	</c:otherwise>
+</c:choose>
+
+<title><tiles:getAsString name="title"></tiles:getAsString></title>
+
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
