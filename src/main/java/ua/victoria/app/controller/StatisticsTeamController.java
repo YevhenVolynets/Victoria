@@ -43,7 +43,7 @@ public class StatisticsTeamController {
 		
 		
 		return "statistics/team/statisticsTable";
-	}
+	} 
 	
 	@GetMapping("/team/{id}/lastMatch")
 	public String showLastMatches(@PathVariable("id") String id,Model model) {

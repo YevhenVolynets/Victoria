@@ -31,6 +31,7 @@ import ua.victoria.app.entity.Calendar;
 import ua.victoria.app.entity.Footballer;
 import ua.victoria.app.entity.Ligue;
 import ua.victoria.app.entity.News;
+import ua.victoria.app.entity.Photo;
 import ua.victoria.app.entity.Position;
 import ua.victoria.app.entity.StatisticsFootballer;
 import ua.victoria.app.entity.Team;
@@ -40,6 +41,7 @@ import ua.victoria.app.service.AmpluaService;
 import ua.victoria.app.service.CalendarService;
 import ua.victoria.app.service.FootballerService;
 import ua.victoria.app.service.NewsService;
+import ua.victoria.app.service.PhotoService;
 import ua.victoria.app.service.StatisticsFootballerService;
 import ua.victoria.app.service.TeamService;
 import ua.victoria.app.service.UserService;
@@ -50,30 +52,32 @@ import ua.victoria.app.service.utils.CustomFileUtils;
 @SessionAttributes({"oneModel","teamModel","add","onePlayer"})
 public class AdminController {
 	
-	@Autowired
 	private AdminService adminService;
-	
-	@Autowired
-	private AmpluaService ampluaService;
-	
-	@Autowired
-	private CalendarService calendarService;
-	
-	@Autowired
-	private TeamService teamService;
-	
-	@Autowired
+	private AmpluaService ampluaService;	
+	private CalendarService calendarService;	
+	private TeamService teamService;	
 	private FootballerService footballerService;
-	
-	@Autowired
 	private StatisticsFootballerService statisticsFootballerService;
-	
-	@Autowired
-	private NewsService newsService;
-	
-	@Autowired
+	private NewsService newsService;	
 	private UserService userService;
+	private PhotoService photoService;
 	
+	@Autowired
+	public AdminController(AdminService adminService, AmpluaService ampluaService, CalendarService calendarService,
+			TeamService teamService, FootballerService footballerService,
+			StatisticsFootballerService statisticsFootballerService, NewsService newsService, UserService userService, PhotoService photoService) {
+		
+		this.adminService = adminService;
+		this.ampluaService = ampluaService;
+		this.calendarService = calendarService;
+		this.teamService = teamService;
+		this.footballerService = footballerService;
+		this.statisticsFootballerService = statisticsFootballerService;
+		this.newsService = newsService;
+		this.userService = userService;
+		this.photoService = photoService;
+	}
+
 	@GetMapping
 	public String getMenu(Model model) {
 		model.addAttribute("title","Адмін панель");
@@ -243,12 +247,35 @@ public class AdminController {
 		model.addAttribute("title", "Редагування статистики футболіста");
 		return "statistics/footballer/editOne";
 	}
-	
+	 
 	@PostMapping("/saveFootballer")
 	public String saveFootballer(@ModelAttribute("onePlayer") Footballer footballer) {
 		System.out.println(footballer.getStatistics());
 		statisticsFootballerService.saveStatistics(footballer.getStatistics());
 		footballerService.savePlayer(footballer);
+		return "redirect:/admin";
+	}
+	
+	@GetMapping("/addPhoto")
+	public String addPhoto(Model model) {
+		
+		model.addAttribute("photo", new Photo());
+		model.addAttribute("title", "Додавання фото");
+		return "admin/addPhoto";
+	}
+	
+	@PostMapping("/addPhoto")
+	public String saveImg(@ModelAttribute("photo") Photo photo,@RequestParam("fileUpload") MultipartFile file) throws IOException {
+		
+		if (!file.isEmpty() && file!=null) {
+			BufferedImage image = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+			File dest = new File(CustomFileUtils.RESOURCES_IMG_PATH+file.getOriginalFilename());
+			ImageIO.write(image, "png", dest);
+			photo.setNamePhoto(file.getOriginalFilename());
+			photoService.savePhoto(photo);
+		}
+		
+		
 		return "redirect:/admin";
 	}
 }

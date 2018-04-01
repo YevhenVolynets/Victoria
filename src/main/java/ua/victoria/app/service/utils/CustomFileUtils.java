@@ -15,7 +15,8 @@ public final class CustomFileUtils {
 	public static String PROJECT_PATH = System.getProperty("user.dir");
 	public static String SEPARATOR = System.getProperty("file.separator");
 	public static String ROOT_PATH = PROJECT_PATH + SEPARATOR + "src" + SEPARATOR + "main" + SEPARATOR + "webapp" + SEPARATOR + "upload";
-	
+	public static String RESOURCES_PATH = PROJECT_PATH + SEPARATOR + "src" + SEPARATOR + "main" + SEPARATOR + "webapp" + SEPARATOR + "resources";
+	public static String RESOURCES_IMG_PATH = PROJECT_PATH + SEPARATOR + "src" + SEPARATOR + "main" + SEPARATOR + "webapp" + SEPARATOR + "resources"+SEPARATOR+"img"+SEPARATOR;
 	
 	public static File createFolder(String folderName) {
 		  File root = new File(ROOT_PATH);
