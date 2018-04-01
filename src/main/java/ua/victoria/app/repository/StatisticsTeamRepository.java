@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import ua.victoria.app.entity.Ligue;
 import ua.victoria.app.entity.StatisticsTeam;
 import ua.victoria.app.entity.Team;
+import ua.victoria.app.entity.enumerated.Ligue;
 
 @Repository
 public interface StatisticsTeamRepository  extends JpaRepository<StatisticsTeam, Integer>{

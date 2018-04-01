@@ -14,4 +14,8 @@ public interface FootballerService {
 	List<Footballer> findAll();
 	
 	List<Footballer> findPlayerByIdTeamAndSortByNumberShirt(Team team);
+	
+	List<Footballer> findPlayerByIdTeamAndSortByNumberGoal(Team team);
+	
+	List<Footballer> findPlayerByTeam(Team team);
 }

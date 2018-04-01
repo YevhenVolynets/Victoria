@@ -40,4 +40,16 @@ public class FootballerServiceImpl implements FootballerService{
 		return footballerRepository.findPlayerByIdTeamAndSortByNumberShirt(team);
 	}
 
+	@Override
+	public List<Footballer> findPlayerByIdTeamAndSortByNumberGoal(Team team) {
+
+		return footballerRepository.findPlayerByIdTeamAndSortByNumberGoal(team);
+	}
+
+	@Override
+	public List<Footballer> findPlayerByTeam(Team team) {
+		
+		return footballerRepository.findPlayerByTeam(team);
+	}
+
 }

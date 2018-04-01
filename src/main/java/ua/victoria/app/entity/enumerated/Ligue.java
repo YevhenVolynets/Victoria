@@ -1,4 +1,4 @@
-package ua.victoria.app.entity;
+package ua.victoria.app.entity.enumerated;
 
 public enum Ligue {
 	First("Вища"),

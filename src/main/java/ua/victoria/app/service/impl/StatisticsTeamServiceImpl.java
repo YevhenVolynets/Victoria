@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ua.victoria.app.entity.Ligue;
 import ua.victoria.app.entity.ParserTableResult;
 import ua.victoria.app.entity.StatisticsTeam;
 import ua.victoria.app.entity.Team;
+import ua.victoria.app.entity.enumerated.Ligue;
 import ua.victoria.app.repository.ParserTableResultRepository;
 import ua.victoria.app.repository.StatisticsTeamRepository;
 import ua.victoria.app.repository.TeamRepository;

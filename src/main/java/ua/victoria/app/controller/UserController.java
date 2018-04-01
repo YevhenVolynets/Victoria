@@ -76,71 +76,11 @@ public class UserController {
 		
 		model.addAttribute("img", CustomFileUtils.getImage(entity));
 		
-		/*File folder = CustomFileUtils.createFolder("user_"+entity.getId());
-		
-		if ((new File(folder.toString()+CustomFileUtils.SEPARATOR+"logo.png")).exists()) {
-			File file = new File("D:/tmp/"+entity.getId()+"/logo.png");
-			
-			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
-			String encodeFileBase64 = new String(encodeFileToByte);
-			model.addAttribute("imageFromDisk",encodeFileBase64);
-		} else {
-			File file = new File("D:/tmp/default.png");
-			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
-			String encodeFileBase64 = new String(encodeFileToByte);
-			model.addAttribute("imageFromDisk",encodeFileBase64);
-		} */
-		
 		model.addAttribute("title",entity.getUserDetail().getFirstName() +" "+ entity.getUserDetail().getLastName());
 		model.addAttribute("user", entity);
 		return "user/profile";
 	}
 	
-
-	/*@GetMapping("/{userId}/detail")
-	public String showUser(@PathVariable("userId") int userId, Model model) throws IOException {
-		
-		String fileName = "D:/tmp/"+userId+"/logo.png";
-		
-		
-		if ((new File(fileName)).exists()) {
-			File file = new File("D:/tmp/"+userId+"/logo.png");
-			
-			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
-			String encodeFileBase64 = new String(encodeFileToByte);
-			model.addAttribute("imageFromDisk",encodeFileBase64);
-		} else {
-			File file = new File("D:/tmp/default.png");
-			byte[] encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
-			String encodeFileBase64 = new String(encodeFileToByte);
-			model.addAttribute("imageFromDisk",encodeFileBase64);
-		} 
-
-		UserEntity user1 = userService.findUserById(userId);
-		model.addAttribute("userOne",user1);
-		System.out.println(user1);
-		return "user/detail";
-	}*/
-	
-	/*@PostMapping("/{userId}/edit")
-	public String saveEditUser(
-			@PathVariable("userId") int userId,
-			@RequestParam("firstName") String firstName,
-			@RequestParam("lastName") String lastName,
-			@RequestParam("phone") String phone) {
-		System.out.println(user);
-		System.out.println(result);
-		UserEntity user =userService.findUserById(userId);
-		UserDetail userDetail = new UserDetail();
-		
-		userDetail.setFirstName(firstName);
-		userDetail.setLastName(lastName);
-		userDetail.setPhone(phone);
-		
-		userService.saveUser(user);
-		
-		return "redirect:/user/"+user.getId()+"/detail";
-	}*/
 	
 	
 	/*@PostMapping("/add")

@@ -138,12 +138,7 @@ public class BaseController {
 		return "social";
 	}
 	
-	@GetMapping("/photos")
-	public String showPhoto(Model model) {
-		
-		model.addAttribute("title", "Фото");
-		return "photo";
-	}
+
 	
 	@GetMapping("/video")
 	public String showVideo(Model model) {
@@ -154,12 +149,7 @@ public class BaseController {
 		return "video";
 	}
 	
-	@GetMapping("/victoria-2004")
-	public String showvictoria2004(Model model) {
-		
-		model.addAttribute("title", "FC - VICTORIA 2004");
-		return "victoria/victoria-2004";
-	}
+
 	
 	@GetMapping("/contacts")
 	public String showContact(Model model) {

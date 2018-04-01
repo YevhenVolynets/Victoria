@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/views/taglib.jsp" %>
 
 
-
+<br><br><br><hr>
 <table class="table  exotic-table">
 				
 				<tr class="panel-heading">
@@ -35,3 +35,5 @@
 					</c:forEach>
 					</tbody>
 			</table>
+			
+			<br><hr>

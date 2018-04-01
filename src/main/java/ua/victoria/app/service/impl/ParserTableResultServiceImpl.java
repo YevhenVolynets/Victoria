@@ -10,8 +10,8 @@ import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ua.victoria.app.entity.Ligue;
 import ua.victoria.app.entity.ParserTableResult;
+import ua.victoria.app.entity.enumerated.Ligue;
 import ua.victoria.app.repository.ParserTableResultRepository;
 import ua.victoria.app.service.ParserTableResultService;
 

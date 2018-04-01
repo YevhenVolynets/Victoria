@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.victoria.app.entity.Amplua;
-import ua.victoria.app.entity.Position;
+import ua.victoria.app.entity.enumerated.Position;
 import ua.victoria.app.repository.AmpluaRepository;
 import ua.victoria.app.service.AmpluaService;
 

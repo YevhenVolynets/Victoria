@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import ua.victoria.app.entity.enumerated.Ligue;
+
 @Entity
 @Table(name ="calendar")
 public class Calendar extends BaseEntity{

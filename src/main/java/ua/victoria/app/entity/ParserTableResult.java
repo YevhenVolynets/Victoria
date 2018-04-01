@@ -6,6 +6,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import ua.victoria.app.entity.enumerated.Ligue;
+
 @Entity
 @Table(name = "parses_table_result")
 public class ParserTableResult extends BaseEntity{

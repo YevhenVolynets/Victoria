@@ -2,6 +2,8 @@ package ua.victoria.app.entity;
 
 import javax.persistence.*;
 
+import ua.victoria.app.entity.enumerated.Position;
+
 @Entity
 @Table(name = "amplua")
 public class Amplua extends BaseEntity{

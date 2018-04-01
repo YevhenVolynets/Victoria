@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ua.victoria.app.entity.Team;
 import ua.victoria.app.service.CalendarService;
+import ua.victoria.app.service.FootballerService;
 import ua.victoria.app.service.TeamService;
 
 @Controller
@@ -27,13 +28,16 @@ public class TeamController {
 	
 	@Autowired
 	private CalendarService calendarService;
+	
+	@Autowired
+	private FootballerService footballerService;
 
 	
-	@GetMapping("/list")
+	/*@GetMapping("list")
 	public String showAllTeam() {
 		
 		return "team/list";
-	}
+	}*/
 	
 	/*@GetMapping("/addpars")
 	public String writeTeam() {
@@ -51,5 +55,12 @@ public class TeamController {
 		return "team/oneteam";
 	}
 	
-
+	@GetMapping("/{idTeam}/map")
+	public String showOneTeamMap(@PathVariable("idTeam") int id,Model model) {
+		model.addAttribute("players",footballerService.findPlayerByTeam(teamService.findTeamById(id)));
+		
+		model.addAttribute("title","Мапа");
+		return "team/map";
+	}
+	
 }

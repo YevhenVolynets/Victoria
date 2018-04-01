@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ua.victoria.app.entity.Calendar;
-import ua.victoria.app.entity.Ligue;
 import ua.victoria.app.entity.StatisticsTeam;
 import ua.victoria.app.entity.Team;
+import ua.victoria.app.entity.enumerated.Ligue;
 import ua.victoria.app.repository.StatisticsTeamRepository;
 import ua.victoria.app.service.CalendarService;
 import ua.victoria.app.service.StatisticsTeamService;

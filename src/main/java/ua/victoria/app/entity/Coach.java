@@ -2,6 +2,8 @@ package ua.victoria.app.entity;
 
 import javax.persistence.*;
 
+import ua.victoria.app.entity.enumerated.TypeCoach;
+
 @Entity
 @Table(name = "coach")
 public class Coach extends BaseEntity{

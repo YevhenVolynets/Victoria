@@ -2,6 +2,8 @@ package ua.victoria.app.entity;
 
 import javax.persistence.*;
 
+import ua.victoria.app.entity.enumerated.Ligue;
+
 @Entity
 @Table(name = "statistics_team")
 public class StatisticsTeam extends BaseEntity{

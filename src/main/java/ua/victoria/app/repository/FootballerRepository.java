@@ -14,5 +14,10 @@ public interface FootballerRepository extends JpaRepository<Footballer, Integer>
 	
 	@Query("SELECT f FROM Footballer f WHERE f.team = :team ORDER BY f.numberShirt ASC")
 	List<Footballer> findPlayerByIdTeamAndSortByNumberShirt(@Param("team") Team team);
+	
+	@Query("SELECT f FROM Footballer f WHERE f.team = :team ORDER BY f.statistics.goal DESC")
+	List<Footballer> findPlayerByIdTeamAndSortByNumberGoal(@Param("team") Team team);
 
+	@Query("SELECT f FROM Footballer f WHERE f.team = :team")
+	List<Footballer> findPlayerByTeam(@Param("team") Team team);
 }
