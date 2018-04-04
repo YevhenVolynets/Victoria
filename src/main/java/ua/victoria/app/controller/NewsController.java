@@ -31,7 +31,7 @@ public class NewsController {
 	@GetMapping("/")
 	public String showNews(Model model) throws IOException {
 		
-		model.addAttribute("allNews", newsService.findAll());
+		/*model.addAttribute("allNews", newsService.findAll());*/
 		List<News> list =  newsService.findAll();
 		for (News news : list) {
 			String oldPathfoto = news.getPathToFoto();

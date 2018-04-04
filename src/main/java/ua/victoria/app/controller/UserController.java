@@ -62,7 +62,9 @@ public class UserController {
 	@GetMapping("/profile")
 	public String showProfile(Model model,Principal principal) throws IOException { 
 		
-		UserEntity entity = userService.findUserByEmail(principal.getName());
+		UserEntity entity = userService.findUserByEmail(principal.getName());	
+		
+		
 		UserDetail userDetail;
 		if(entity.getUserDetail()== null) {
 			 userDetail = new UserDetail();
@@ -75,7 +77,7 @@ public class UserController {
 		/*userService.updateUser(entity);*/
 		
 		model.addAttribute("img", CustomFileUtils.getImage(entity));
-		
+		model.addAttribute("today", new Date());
 		model.addAttribute("title",entity.getUserDetail().getFirstName() +" "+ entity.getUserDetail().getLastName());
 		model.addAttribute("user", entity);
 		return "user/profile";

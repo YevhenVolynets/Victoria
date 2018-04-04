@@ -14,6 +14,6 @@
 <a href="${rootURL}/admin/parser/addTableSecondLigue">Парсинг таблиці результатів другої ліги</a><br><br>
 <a href="${rootURL}/admin/parser/addFinalTable">Cтворення фінальної таблиці</a><br><br>
 <a href="${rootURL}/admin/addCalendar">Cтворення календаря з парсингу</a><br><br>
-<a href="${rootURL}/admin/editCalendar">Редагування календаря</a><br><br>
+<a href="${rootURL}/admin/editCalendar/pages/1">Редагування календаря</a><br><br>
 <%-- <a href="${rootURL}/forgotpass">Пароль форгот</a><br><br> --%>
 

@@ -14,18 +14,18 @@ import ua.victoria.app.service.utils.CustomFileUtils;
 @Service
 public class AdminServiceImpl implements AdminService{
 
-	@Autowired
-	private NewsRepository newsRepository;
+	/*@Autowired
+	private NewsRepository newsRepository;*/
 	
 	@Override
 	public void createFolder(String foldername) {
 		 CustomFileUtils.createFolder(foldername);
 	}
 
-	@Override
+	/*@Override
 	public void save(News news) {
 		newsRepository.save(news);
 		
-	}
+	}*/
 
 }

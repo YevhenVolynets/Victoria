@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -150,10 +151,37 @@ public class AdminController {
 		model.addAttribute("title", "Парсинг календаря");
 		return "redirect:/admin/";
 	}
-	
-	@GetMapping("/editCalendar")
-	public String editCalendar(Model model){
-		model.addAttribute("calendarListModel",calendarService.findAllCalendar());
+	/* якшо шо ту вернути назад */
+	@GetMapping("/editCalendar/pages/{pageNumber}")
+	public String editCalendar(
+			@PathVariable("pageNumber") int pageNumber,
+			@RequestParam(value = "field", required = false) String field,
+			@RequestParam(value = "sort", required = false)  String sort,
+			@RequestParam(value = "total", required = false) String total,
+			Model model){
+		
+		int totalPerPage = total != null ? Integer.valueOf(total) : 10;
+		String sortDirection = sort!= null ? sort.toUpperCase() : "ASC";
+		String sortByField = field != null ? field :"id"; 
+		
+		Page<Calendar> page = calendarService.getPagebleCalendar(pageNumber, totalPerPage, sortDirection, sortByField);
+		
+		int currentPage = page.getNumber()+1;
+		int begin = Math.max(1, currentPage - 10);
+		int end = Math.min(begin + 10, page.getNumber());
+
+		
+		model.addAttribute("calendarList",page);
+		model.addAttribute("beginIndex",begin);
+		model.addAttribute("endIndex",end);
+		model.addAttribute("currentIndex",currentPage);
+		model.addAttribute("calendarListByPageSize",page.getContent());
+		
+		
+		model.addAttribute("sortByField",sortByField);
+		model.addAttribute("sortDirection",sortDirection);
+		model.addAttribute("totalPerPage",totalPerPage);
+		/*model.addAttribute("calendarListModel",calendarService.findAllCalendar());*/
 		model.addAttribute("title", "Редагування календаря");
 		return "calendar/edit";
 	}
@@ -187,7 +215,7 @@ public class AdminController {
 		
 		  System.out.println(calendar);
 		calendarService.saveCalendar(calendar);
-		return "redirect:/admin/editCalendar";
+		return "redirect:/admin/editCalendar/pages/1";
 	}
 
 	@GetMapping("/calendar/add")

@@ -3,6 +3,7 @@ package ua.victoria.app.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import ua.victoria.app.entity.News;
@@ -30,6 +31,12 @@ public class NewsServiceImpl implements NewsService{
 	public List<News> findAll() {
 		
 		return newsRepository.findAll();
+	}
+
+	@Override
+	public List<News> findAllAndSortByDate() {
+		
+		return newsRepository.findAll(new Sort(Sort.Direction.DESC, "createDate"));
 	}
 
 }

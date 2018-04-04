@@ -16,7 +16,7 @@ public class VictoriaProjectApplication extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(VictoriaProjectApplication.class, args);
 		addAdmin(context);
-	}
+	} 
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {

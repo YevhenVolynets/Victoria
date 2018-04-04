@@ -4,14 +4,18 @@
 
 <style>
 .maintext{
-color:white;
 font-size: 30px;
 margin: 0 auto 20px auto;
 padding:30px;
 }
 </style>
 <br><br><br>
-<h2 style="text-align: center; color: white">Історія клубу</h2>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">  <h2 style="text-align: center; color: white">Історія клубу</h2>  </div>
+   <div class="panel-body">
+
 
 <hr>
     <div class="maintext"><p>ФК "Вікторія" - футбольний клуб з міста Львова. </p>Заснований в серпні 2014 року.<p> Почалась історія клубу з середньої загальноосвітньої школи №54, яка і стала базою клубу. Більше половини команди  - це учні цієї школи.</p>
@@ -24,4 +28,6 @@ padding:30px;
 <li>Срібний призер турніру "Кубок Федерації 2017".</li> 
 </ul>
 
+</div>
+</div>
 </div>

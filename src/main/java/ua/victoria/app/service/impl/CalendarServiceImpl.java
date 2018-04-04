@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import ua.victoria.app.entity.Calendar;
@@ -118,6 +121,16 @@ public class CalendarServiceImpl implements CalendarService{
 	public List<Calendar> findHomeCalendar(Team teamhome) {
 		
 		return calendarRepository.findHomeCalendar(teamhome);
+	}
+
+	@Override
+	public Page<Calendar> getPagebleCalendar(int pageNumber, int pageSize, String sort, String sortByField) {
+		PageRequest request = new PageRequest(
+				pageNumber -1,
+				pageSize, 
+				sort.toUpperCase().equals("ASC")?Sort.Direction.ASC:Sort.Direction.DESC,
+				sortByField);
+		return calendarRepository.findAll(request);
 	}
 
 }

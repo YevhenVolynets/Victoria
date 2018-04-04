@@ -11,5 +11,7 @@ public interface NewsService {
 	News findNewsById(int id);
 	
 	List<News> findAll();
+	
+	List<News> findAllAndSortByDate();
 
 }

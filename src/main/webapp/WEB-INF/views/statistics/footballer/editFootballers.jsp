@@ -21,7 +21,7 @@
 
 				<tbody class="panel-body">
 					<c:forEach var="player" items="${listPlayer}">
-						<tr onclick="window.location.href=''; return false">
+						<tr>
 							<td>${player.numberShirt}</td>
 							<td>${player.firstName} ${player.lastName}</td> 
 							 <td>${player.amplua.amplua.val}</td> 

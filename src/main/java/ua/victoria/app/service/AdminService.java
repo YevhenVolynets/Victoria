@@ -6,6 +6,6 @@ public interface AdminService {
 	
 	void createFolder(String foldername);
 	
-	void save(News news);
+	//void save(News news);
 
 }

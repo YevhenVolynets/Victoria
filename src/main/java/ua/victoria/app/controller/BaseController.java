@@ -26,11 +26,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ua.victoria.app.domain.ForgotRequest;
 import ua.victoria.app.domain.RegisterRequest;
+import ua.victoria.app.entity.News;
+import ua.victoria.app.entity.Team;
 import ua.victoria.app.entity.UserEntity;
 import ua.victoria.app.entity.UserRole;
 import ua.victoria.app.mapper.UserMapper;
+import ua.victoria.app.service.FootballerService;
+import ua.victoria.app.service.NewsService;
 import ua.victoria.app.service.StatisticsTeamService;
+import ua.victoria.app.service.TeamService;
 import ua.victoria.app.service.UserService;
+import ua.victoria.app.service.utils.CustomFileUtils;
 import ua.victoria.app.service.utils.TokenGenerator;
 
 @Controller
@@ -42,6 +48,15 @@ public class BaseController {
 	private UserService userService;  
 	
 	@Autowired
+	private TeamService teamService;
+	
+	@Autowired
+	private NewsService newsService;
+	
+	@Autowired
+	private FootballerService footballerService;
+	
+	@Autowired
 	private StatisticsTeamService statisticsTeamService;
 	/*@GetMapping("/")
 	public String showHome() {
@@ -50,7 +65,9 @@ public class BaseController {
 	}*/
 	
 	@GetMapping("/")
-	public String showUserAddPAge(Model model) {
+	public String showUserAddPAge(Model model) throws IOException {
+		Team team = teamService.findTeamById(20); 
+		
 		Document doc = null;
 		try {
 			doc = Jsoup.connect("https://www.ua-football.com/ua").get();
@@ -63,7 +80,24 @@ public class BaseController {
 		for(int i=3;i<23;i+=2) {
 			list.add(tableScoreOne.childNode(1).childNode(i).toString());
 		}
+		
+		try {
+		List<News> list1 =  newsService.findAllAndSortByDate().subList(0, 2);
+		for (News news : list1) {
+			String oldPathfoto = news.getPathToFoto();
+			news.setPathToFoto(CustomFileUtils.getImage("news"+CustomFileUtils.SEPARATOR+oldPathfoto+".png"));
+		}
+		model.addAttribute("mainnews", list1);
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("not list");
+		}
+
 		model.addAttribute("list1", list);
+		try {
+		model.addAttribute("footballtat",footballerService.findPlayerByIdTeamAndSortByNumberGoal(team).subList(0, 5));
+		}catch (IndexOutOfBoundsException e) {
+			System.out.println("not list");
+		}
 		
 		model.addAttribute("userModelka", new RegisterRequest());
 		model.addAttribute("userRoless",UserRole.values());

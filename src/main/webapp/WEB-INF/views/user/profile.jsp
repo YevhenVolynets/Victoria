@@ -168,7 +168,13 @@ enctype="multipart/form-data">
               <!-- /input-group -->
             </div>
             <div class="col-sm-6">
-            <h4 style="color:#00b1b1;"> ${user.userDetail.firstName } ${user.userDetail.lastName }</h4></span>
+            <h4 style="color:#00b1b1;"> ${user.userDetail.firstName } ${user.userDetail.lastName }</h4>
+            <c:if test = "${today.month==user.userDetail.birthday.month && today.date == user.userDetail.birthday.date}">
+         <h4>Happy Birthday ^-^)</h4>
+  <audio autoplay="autoplay" >
+    <source src="/resources/music/happyBirthday.mp3" type="audio/mpeg">
+  </audio>
+      </c:if>
             <c:choose>
               <c:when test="${user.activated}"><span class="glyphicon glyphicon-ok-sign" style="color:green"><p>Активний</p></span></c:when> 
              <c:otherwise> <span class="glyphicon glyphicon-exclamation-sign" style="color:red"><p>Не активний</p> </span>  </c:otherwise>          
@@ -190,12 +196,52 @@ enctype="multipart/form-data">
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Рік Народження:</div><div class="col-sm-6">${user.userDetail.birthday.month+1}</div>
+<div class="col-sm-6 col-xs-6 tital " >Вік:</div><div class="col-sm-6"> 
+<c:choose>
+         
+         <c:when test = "${(today.month - user.userDetail.birthday.month) < 0}">
+           ${today.year - user.userDetail.birthday.year-1} років
+         </c:when>
+         
+         <c:when test = "${(today.month - user.userDetail.birthday.month) == 0}">
+            
+            <c:choose>
+            <c:when test = "${today.date - user.userDetail.birthday.date < 0}">
+             ${today.year - user.userDetail.birthday.year-1} років
+         </c:when>
+            <c:otherwise>
+            ${today.year - user.userDetail.birthday.year} років
+         </c:otherwise>
+        </c:choose>
+         </c:when>
+         
+         <c:otherwise>
+            ${today.year - user.userDetail.birthday.year} років
+         </c:otherwise>
+      </c:choose>
 
+</div>
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-6 col-xs-6 tital " >Дата народження:</div><div class="col-sm-6">${user.userDetail.birthday.date}</div>
+<div class="col-sm-6 col-xs-6 tital " >Дата народження:</div><div class="col-sm-6">${user.userDetail.birthday.date}
+<c:choose>
+        <c:when test="${user.userDetail.birthday.month == 0}"> січня</c:when>
+        <c:when test="${user.userDetail.birthday.month == 1}"> лютого</c:when>
+        <c:when test="${user.userDetail.birthday.month == 2}"> березня</c:when>
+        <c:when test="${user.userDetail.birthday.month == 3}"> квітня</c:when>
+        <c:when test="${user.userDetail.birthday.month == 4}"> травня</c:when>
+        <c:when test="${user.userDetail.birthday.month == 5}"> червня</c:when>
+        <c:when test="${user.userDetail.birthday.month == 6}"> липня</c:when>
+        <c:when test="${user.userDetail.birthday.month == 7}"> серпня</c:when>
+        <c:when test="${user.userDetail.birthday.month == 8}"> вересня</c:when>
+        <c:when test="${user.userDetail.birthday.month == 9}"> жовтня</c:when>
+        <c:when test="${user.userDetail.birthday.month == 10}"> листопада</c:when>
+        <c:when test="${user.userDetail.birthday.month == 11}"> грудня</c:when>
+        <c:otherwise>undefined</c:otherwise>
+    </c:choose>
+
+ </div>
 
   <div class="clearfix"></div>
 <div class="bot-border"></div>
